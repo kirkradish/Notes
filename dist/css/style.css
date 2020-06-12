@@ -1,0 +1,133 @@
+* {padding: 0; margin: 0; box-sizing: border-box;}
+html, body {width: 100%; height: 100%;}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Inter', sans-serif;
+	font-size: 70%;
+}
+
+.container {
+	position: relative;
+	width: 55vh;
+	height: 90vh;
+	background-image: url('../img/plant-green-minimal-leaf.jpg');
+	padding: 2rem;
+	box-shadow: 0 20px 20px rgba(0,0,0,.2);
+}
+
+.cover-img {
+	background-size: cover;
+	background-position: center;
+}
+
+.app-header {
+	display: flex;
+	align-items: baseline;
+	justify-content:space-between;
+}
+.app-header .app-title {
+	font-size: 3.125em; /*50px*/
+	font-weight: 600;
+	color: #1c6747;
+}
+
+.app-header .app-editor {
+	font-size: 1.625em; /*26px*/
+	color: #1c6747;
+}
+
+
+
+/**
+ * NOTEPAD
+ */
+.note-pad {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 78vh;
+	overflow: hidden;
+}
+.note-pad-sheet {
+	position: absolute;
+	padding: 30px;
+	z-index: 100;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50px 50px 0 0;
+	background-image: linear-gradient(to top, rgba(30, 30, 30, 1), rgba(40, 40, 40, 0.9));
+	/*animation: moveInUp .2s ease-out;*/
+}
+
+
+/**
+ * INDIVIDUAL NOTE PREVIEWS
+ */
+.note {
+	padding: 15px 0;
+	border-bottom: 1px solid #595959;
+	/*border: 1px solid red;*/
+}
+.note-header {
+	display: flex;
+	align-items: baseline;
+	justify-content:space-between;
+	margin-bottom: 0.625em; /*10px*/
+}
+.note-title {
+	font-size: 1.625em; /*26px*/
+	font-weight: 600;
+	color: #f2fcff;
+}
+.note-date {
+	font-size: 1.375em; /*22px*/
+	color: #b7b7b7;
+}
+.note-text {
+	font-size: 1.375em; /*22px*/
+	line-height: 1.25;
+	color: #b7b7b7;
+}
+
+
+
+@keyframes moveInUp {
+	0% {
+		transform: translateY(78vh);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+
+
+
+
+
+
+
+@media only screen and (min-height: 800px) {
+	body {
+		/*font-size: 80%;*/
+		/*border: 1px solid red;*/
+	}
+}
+
+@media only screen and (min-height: 900px) {
+	body {
+		/*font-size: 90%;*/
+		/*border: 1px solid blue;*/
+	}
+}
+@media only screen and (min-height: 1000px) {
+	body {
+		font-size: 100%;
+		/*border: 1px solid green;*/
+	}
+}

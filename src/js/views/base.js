@@ -4,24 +4,16 @@ export const elements = {
 }
 
 export const helperFns = {
-	createElement: (tag, className) => {
-		const element = document.createElement(tag)
-		if (className) element.classList.add(className)
-		return element
-	},
 	showNotePad: () => {
-		const notePadSheet = helperFns.createElement('div', 'note-pad-sheet')
-		elements.appContainer.append(notePadSheet)
+		const notePadSheet = `<div class="notebook-container"></div>`;
+		elements.appContainer.insertAdjacentHTML('beforeend', notePadSheet)
 	},
 	placeEditToggle: (instruction) => {
-		const div = helperFns.createElement('div', 'app-editor')
-		const p = helperFns.createElement('p')
-		const text = document.createTextNode(instruction)
+		const instructionDiv = `<div class="app-editor"><p>${instruction}</p></div>`;
 
 		setTimeout(() => {
-			div.append(p)
-			p.append(text)
-			elements.appHeader.append(div)
+			elements.appHeader.insertAdjacentHTML('beforeend', instructionDiv)
+			const instructionBtn = document.querySelector('.app-editor')
 		}, 300)
 	}
 }

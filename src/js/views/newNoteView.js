@@ -1,17 +1,15 @@
 import { elements, helperFns } from './base';
+import * as notebookView from './notebookView';
 
-export default class NewNoteView {
-	constructor() {
-		this.formBox = helperFns.createElement('div', 'form-box')
-		this.titleInput = helperFns.createElement('input', 'title-field')
-		this.titleInput.setAttribute('type', 'text')
-		this.titleInput.setAttribute('placeholder', 'Title')
-		this.textArea = helperFns.createElement('textarea', 'note-field')
-		this.textArea.setAttribute('placeholder', 'What\s up?')
-
-		// Add form to notepad
-		this.formBox.append(this.titleInput)
-		this.formBox.append(this.textArea)
-		document.querySelector('.note-pad-sheet').append(this.formBox)
-	}
+export const newPage = () => {
+	const markup = `
+		<div class="form-box">
+			<input type="text" class="title-field" placeholder="Title">
+			<textarea class="note-field" placeholder="What's up?"></textarea>
+		</div>
+	`;
+	
+	helperFns.showNotePad()
+	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
+	helperFns.placeEditToggle('Done')
 }

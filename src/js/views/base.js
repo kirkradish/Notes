@@ -9,6 +9,10 @@ export const helperFns = {
 		if (className) element.classList.add(className)
 		return element
 	},
+	showNotePad: () => {
+		const notePadSheet = helperFns.createElement('div', 'note-pad-sheet')
+		elements.appContainer.append(notePadSheet)
+	},
 	placeEditToggle: (instruction) => {
 		const div = helperFns.createElement('div', 'app-editor')
 		const p = helperFns.createElement('p')

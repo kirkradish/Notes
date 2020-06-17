@@ -44,9 +44,12 @@ body {
 	font-size: 1.625em; /*26px*/
 	color: #1c6747;
 }
-.app-editor {animation: editUp .3s ease-out;}
+.app-editor {
+	cursor: pointer;
+	animation: editUp .3s ease-out;
+}
 @keyframes editUp {
-	0% {transform: translateY(5px);}
+	0% {transform: translateY(15px);}
 	100% {transform: translateY(0px);}
 }
 
@@ -80,12 +83,13 @@ body {
 	margin: 30px 0;
 }
 .add-circle:hover {
-	transform: translateY(-2px);
+	/*transform: translateY(-2px);*/
+	box-shadow: 0 0 10px 8px rgba(8,40,29,0.2);
 }
 .add-circle:active {
-	transform: translateY(-1px);
+	/*transform: translateY(-1px);*/
+	box-shadow: 0 0 10px 5px rgba(8,40,29,0.2);
 }
-
 
 .add-circle::after {
 	content: '+';
@@ -127,48 +131,6 @@ body {
 
 
 /**
- * INDIVIDUAL NOTE PREVIEWS
- */
-.note {
-	padding: 15px 0;
-	border-bottom: 1px solid #595959;
-}
-.note-header {
-	display: flex;
-	align-items: baseline;
-	justify-content:space-between;
-	margin-bottom: 0.625em; /*10px*/
-}
-.note-title {
-	font-size: 1.625em; /*26px*/
-	font-weight: 600;
-	color: #f2fcff;
-}
-.note-date {
-	font-size: 1.375em; /*22px*/
-	color: #b7b7b7;
-}
-.note-text {
-	font-size: 1.375em; /*22px*/
-	line-height: 1.25;
-	color: #b7b7b7;
-}
-
-
-
-@keyframes moveInUp {
-	0% {
-		transform: translateY(78vh);
-	}
-	100% {
-		transform: translateY(0);
-	}
-}
-
-
-
-
-/**
  * NEW NOTE FORM
  */
 .form-box {height: 100%;}
@@ -201,6 +163,61 @@ body {
 .note-field {
 	height: 87%;
 }
+.new-note-right {
+	animation: newNoteRight .3s ease;
+}
+@keyframes newNoteRight {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+}
+
+
+
+
+/**
+ * INDIVIDUAL NOTE PREVIEWS
+ */
+.note {
+	padding: 15px 0;
+	border-bottom: 1px solid #595959;
+}
+.note-header {
+	display: flex;
+	align-items: baseline;
+	justify-content:space-between;
+	margin-bottom: 0.625em; /*10px*/
+}
+.note-title {
+	font-size: 1.625em; /*26px*/
+	font-weight: 600;
+	color: #f2fcff;
+}
+.note-date {
+	font-size: 1.375em; /*22px*/
+	color: #b7b7b7;
+}
+.note-copy {
+	font-size: 1.375em; /*22px*/
+	line-height: 1.25;
+	color: #b7b7b7;
+}
+
+@keyframes moveInUp {
+	0% {
+		transform: translateY(78vh);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+
 
 
 @media only screen and (min-height: 800px) {

@@ -7,7 +7,9 @@ export default class NoteBookView {
 		this.title = helperFns.createElement('h2', 'note-title')
 		this.date = helperFns.createElement('p', 'note-date')
 		this.copy = helperFns.createElement('p', 'note-copy')
+	}
 
+	addToNotebook(id, date, title, copy) {
 		this.note.append(this.header)
 		this.header.append(this.title)
 		this.header.append(this.date)

@@ -1,10 +1,14 @@
+import NoteBookModel from './models/NoteBookModel';
+
 import { elements, helperFns } from './views/base';
 import HomeView from './views/homeView';
 import NewNoteView from './views/newNoteView';
 import NoteBookView from './views/noteBookView';
 
 
-// const state = {}
+const state = {}
+// TESTING
+window.state = state;
 
 const screen = {}
 screen.homeView = new HomeView();
@@ -47,6 +51,10 @@ elements.appContainer.addEventListener('click', (e) => {
 				// Remove from state
 				delete screen.newNoteView;
 			}, 200) // keep time same as disappear animate style in css (or a little slower)
+
+			// Save note
+			state.notebookModel = new NoteBookModel()
+			state.notebookModel.addNote();
 		}
 
 		// Pull up Notebook
@@ -57,3 +65,6 @@ elements.appContainer.addEventListener('click', (e) => {
 
 
 // NOTEBOOK SCREEN
+if (screen.noteBookView) {
+	console.log('This is the notebook screen');
+}

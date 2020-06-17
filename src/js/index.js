@@ -1,4 +1,6 @@
+import NotebookModel from './models/NotebookModel';
 import * as homeView from './views/homeView';
+import * as newNoteView from './views/newNoteView';
 import * as notebookView from './views/notebookView';
 import { elements, helperFns } from './views/base';
 
@@ -20,6 +22,14 @@ elements.appContainer.addEventListener('click', (e) => {
 		
 		if (instructionBtn.textContent === 'Done') {
 			// Add Note to state
+			const title = newNoteView.getNoteTitle();
+			const copy = newNoteView.getNoteCopy();
+			
+			if (title !== '' && copy !== '') {
+				const newNote = newNoteView.createNewNote();
+				state.notebookModel = new NotebookModel(newNote);
+				state.notebookModel.addNoteToState();
+			}
 
 			// Remove new sheet
 			document.querySelector('.form-box').classList.add('new-note-right')
@@ -28,7 +38,6 @@ elements.appContainer.addEventListener('click', (e) => {
 			setTimeout(() => {
 				instructionBtn.parentNode.removeChild(instructionBtn)
 				document.querySelector('.form-box').parentNode.removeChild(document.querySelector('.form-box'))
-				// Slide in notebookView
 				notebookController();
 			}, 200)
 		}
@@ -38,5 +47,6 @@ elements.appContainer.addEventListener('click', (e) => {
 
 // NOTEBOOK CONTROLLER
 const notebookController = () => {
-	notebookView.showNotebook();
+	// Slide in notebookView
+	notebookView.showNotebook(state.notebookModel.notes);
 }

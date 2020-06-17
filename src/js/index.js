@@ -1,4 +1,4 @@
-import { elements } from './views/base';
+import { elements, helperFns } from './views/base';
 import HomeView from './views/homeView';
 import NewNoteView from './views/newNoteView';
 
@@ -18,5 +18,6 @@ elements.appContainer.addEventListener('click', (e) => {
 
 		delete state.homeView;
 		state.newNoteView = new NewNoteView()
+		helperFns.placeEditToggle('Done')
 	}
 })

@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { elements, helperFns } from './base';
-import * as notebookView from './notebookView';
 
 export const newPage = () => {
 	const markup = `
@@ -12,7 +11,7 @@ export const newPage = () => {
 	
 	helperFns.showNotePad()
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
-	helperFns.placeEditToggle('Done')
+	helperFns.placeEditToggle('Save')
 }
 
 export const createNewNote = () => {

@@ -1,5 +1,5 @@
 export const elements = {
-	appContainer: document.querySelector('.app-container'),
+	appContainer: document.querySelector('#app'),
 	appHeader: document.querySelector('.app-header'),
 }
 
@@ -14,22 +14,8 @@ export const helperFns = {
 		const notebookContainer = document.querySelector('.notebook-container')
 		notebookContainer.classList.remove('move-in-up')
 		notebookContainer.classList.add('move-out-down')
-		helperFns.removeEditToggle()
 		setTimeout(() => {
 			notebookContainer.parentNode.removeChild(notebookContainer)
 		}, 300)
-	},
-	placeEditToggle: (instruction) => {
-		const instructionDiv = `<div class="app-editor"><p>${instruction}</p></div>`;
-
-		setTimeout(() => {
-			elements.appHeader.insertAdjacentHTML('beforeend', instructionDiv)
-			const instructionBtn = document.querySelector('.app-editor')
-		}, 300)
-	},
-	removeEditToggle: () => {
-		const editToggle = document.querySelector('.app-editor')
-		editToggle.classList.add('move-out-down')
-		editToggle.parentNode.removeChild(editToggle)
 	}
 }

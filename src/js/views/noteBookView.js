@@ -5,8 +5,6 @@ export const showNotebook = (notes) => {
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 
 	notes.forEach(note => addNoteToUI(note))
-
-	helperFns.placeEditToggle('Edit')
 }
 
 export const addNoteToUI = (note) => {

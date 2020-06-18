@@ -9,12 +9,12 @@ export const newPage = () => {
 		</div>
 	`;
 	
-	helperFns.showNotePad()
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
-	helperFns.placeEditToggle('Save')
 }
 
-// This will go in NotebookModel
+
+
+// These will go in NotebookModel ?
 export const createNewNote = () => {
 	const note = {
 		id: Math.floor(1000 + Math.random() * 9000),

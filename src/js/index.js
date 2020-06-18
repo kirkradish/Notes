@@ -1,5 +1,6 @@
 import NotebookModel from './models/NotebookModel';
 import * as homeView from './views/homeView';
+import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
 import * as notebookView from './views/notebookView';
 import * as utilityBarView from './views/utilityBarView.js';
@@ -31,7 +32,10 @@ elements.appContainer.addEventListener('click', (e) => {
 		homeView.removeAddScreen();
 		setTimeout(() => {
 			state.page = 'new-note'
+			helperFns.showNotePad()
 			newNoteView.newPage()
+			headerView.showAppTitle();
+			headerView.showHeaderUtility('Save')
 			utilityBarView.showUtilityBar(null, 'trash')
 		}, 100)
 	}
@@ -48,10 +52,11 @@ elements.appContainer.addEventListener('click', (e) => {
 			// If there are 0 notes
 			// Go to archive page and give note of 'No notes to show, add one now?'?
 			// Use this for now
+			headerView.removeHeader()
 			helperFns.removeNotePad()
 			utilityBarView.removeUtilityBar()
 			setTimeout(() => {
-				homeView.buildAddScreen();
+				homeView.buildAddScreen()
 			}, 100)
 		}
 		// If note count > 0, remove from state and UI
@@ -100,4 +105,5 @@ elements.appContainer.addEventListener('click', (e) => {
 const notebookController = () => {
 	// Slide in notebookView
 	notebookView.showNotebook(state.notebookModel.notes);
+	headerView.showHeaderUtility('Edit')
 }

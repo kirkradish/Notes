@@ -1,7 +1,7 @@
 import { elements } from './base';
 
-export const createUtilityBar = (info, icon) => {
-	const markup =  `
+export const showUtilityBar = (info, icon) => {
+	const markup = `
 		<div class="utility-bar">
 			<div class="note-count">${info === null ? '' : 'note count'}</div>
 			<div class="note-utility ${icon === 'new' ? 'new' : 'trash'}">

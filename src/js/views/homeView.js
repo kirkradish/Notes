@@ -9,18 +9,15 @@ export const buildAddScreen = () => {
 		</div>
 	`;
 	elements.appContainer.insertAdjacentHTML('beforeend', markup);
+	document.querySelector('.add-container').classList.add('appear')
 }
 
 export const removeAddScreen = (showNextPage) => {
-	elements.appContainer.addEventListener('click', (e) => {
-		if (e.target.matches('.add-circle, .add-circle *')) {
-			const addContainer = document.querySelector('.add-container')
-			addContainer.classList.add('disappear')
+	const addContainer = document.querySelector('.add-container')
+	document.querySelector('.add-container').classList.remove('appear')
+	addContainer.classList.add('disappear')
 
-			setTimeout(() => {
-				addContainer.parentNode.removeChild(addContainer)
-				showNextPage();
-			}, 200)
-		}
-	})
+	setTimeout(() => {
+		addContainer.parentNode.removeChild(addContainer)
+	}, 200)
 }

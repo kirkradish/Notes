@@ -16,37 +16,51 @@ window.state = state;
  * HOME
  */
 window.addEventListener('load', (event) => {
+	state.page = 'home';
 	homeView.buildAddScreen();
-
-	const setUpNewNote = () => {
-		newNoteView.newPage()
-		utilityBarView.createUtilityBar(null, 'trash')
-	}
-	const replaceHome = () => {
-		// Remove notepad and utility bar
-		helperFns.removeNotePad()
-		utilityBarView.removeUtilityBar()
-		setTimeout(() => {
-			homeView.buildAddScreen();
-		}, 200)
-	}
-	// Attach a click listener to go to next page
-	homeView.removeAddScreen(setUpNewNote)
-
-	// Click trash
-	elements.appContainer.addEventListener('click', (e) => {
-		if (e.target.matches('.note-utility *')) {
-			if (e.target.classList.contains('fa-trash-alt')) {
-				replaceHome();
-			}
-		}
-	})
 });
 
 
+/**
+ * ADD NEW NOTE
+ * Go to New Note page with form
+ */
+elements.appContainer.addEventListener('click', (e) => {
+	// If on Home page
+	if (e.target.matches('.add-circle, .add-circle *')) {
+		homeView.removeAddScreen();
+		setTimeout(() => {
+			state.page = 'new-note'
+			newNoteView.newPage()
+			utilityBarView.showUtilityBar(null, 'trash')
+		}, 100)
+	}
+	// If on Notebook (archive) page
+})
+
 
 /**
- * NEW NOTE
+ * TRASH NOTE
+ */
+elements.appContainer.addEventListener('click', (e) => {
+	if (e.target.matches('.note-utility *')) {
+		if (e.target.classList.contains('fa-trash-alt')) {
+			// If there are 0 notes
+			// Go to archive page and give note of 'No notes to show, add one now?'?
+			// Use this for now
+			helperFns.removeNotePad()
+			utilityBarView.removeUtilityBar()
+			setTimeout(() => {
+				homeView.buildAddScreen();
+			}, 100)
+		}
+		// If note count > 0, remove from state and UI
+	}
+})
+
+
+/**
+ * SAVE NOTE
  */
 elements.appContainer.addEventListener('click', (e) => {
 	if (e.target.matches('.app-editor, .app-editor *')) {

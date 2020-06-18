@@ -14,6 +14,7 @@ export const newPage = () => {
 	helperFns.placeEditToggle('Save')
 }
 
+// This will go in NotebookModel
 export const createNewNote = () => {
 	const note = {
 		id: Math.floor(1000 + Math.random() * 9000),

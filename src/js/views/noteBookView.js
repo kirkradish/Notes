@@ -16,6 +16,6 @@ export const addNoteToUI = (note) => {
 			</header>
 			<p class="note-copy">${note.copy}</p>
 		</div>
-	`;
+	`; 
 	document.querySelector('.notebook').insertAdjacentHTML('afterbegin', markup)
 }

@@ -1,4 +1,4 @@
-import { elements, helperFns } from './base';
+import { app, helperFns } from './base';
 
 export const buildAddScreen = () => {
 	const markup = `
@@ -8,7 +8,7 @@ export const buildAddScreen = () => {
 			<p>Write it down!</p>
 		</div>
 	`;
-	elements.appContainer.insertAdjacentHTML('beforeend', markup);
+	app.insertAdjacentHTML('beforeend', markup);
 	document.querySelector('.add-container').classList.add('appear')
 }
 

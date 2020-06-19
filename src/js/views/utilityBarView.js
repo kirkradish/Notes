@@ -1,4 +1,4 @@
-import { elements } from './base';
+import { app } from './base';
 
 export const showUtilityBar = (info, icon) => {
 	const markup = `
@@ -9,7 +9,7 @@ export const showUtilityBar = (info, icon) => {
 			</div>
 		</div>
 	`;
-	elements.appContainer.insertAdjacentHTML('beforeend', markup)
+	app.insertAdjacentHTML('beforeend', markup)
 	document.querySelector('.utility-bar').classList.add('move-in-up')
 }
 

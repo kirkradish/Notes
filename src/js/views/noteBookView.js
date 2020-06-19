@@ -1,4 +1,4 @@
-import { elements, helperFns } from './base';
+import { helperFns } from './base';
 
 export const showNotebook = (notes) => {
 	const markup = `<div class="notebook notebook-to-right"></div>`

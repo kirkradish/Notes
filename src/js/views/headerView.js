@@ -1,8 +1,8 @@
-import { elements, helperFns } from './base';
+import { app, helperFns } from './base';
 
 const createHeader = () => {
 	const markup = '<header class="app-header"></header>';
-	elements.appContainer.insertAdjacentHTML('afterbegin', markup);
+	app.insertAdjacentHTML('afterbegin', markup);
 }
 
 export const showAppTitle = () => {

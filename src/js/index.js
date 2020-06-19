@@ -4,7 +4,7 @@ import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
 import * as notebookView from './views/notebookView';
 import * as utilityBarView from './views/utilityBarView.js';
-import { elements, helperFns } from './views/base';
+import { app, helperFns } from './views/base';
 
 
 const state = {}
@@ -26,7 +26,7 @@ window.addEventListener('load', (event) => {
  * ADD NEW NOTE
  * Go to New Note page with form
  */
-elements.appContainer.addEventListener('click', (e) => {
+app.addEventListener('click', (e) => {
 	// If on Home page
 	if (e.target.matches('.add-circle, .add-circle *')) {
 		homeView.removeAddScreen();
@@ -46,7 +46,7 @@ elements.appContainer.addEventListener('click', (e) => {
 /**
  * TRASH NOTE
  */
-elements.appContainer.addEventListener('click', (e) => {
+app.addEventListener('click', (e) => {
 	if (e.target.matches('.note-utility *')) {
 		if (e.target.classList.contains('fa-trash-alt')) {
 			// If there are 0 notes
@@ -67,7 +67,7 @@ elements.appContainer.addEventListener('click', (e) => {
 /**
  * SAVE NOTE
  */
-elements.appContainer.addEventListener('click', (e) => {
+app.addEventListener('click', (e) => {
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		const instructionBtn = document.querySelector('.app-editor');
 		

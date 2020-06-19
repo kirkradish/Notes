@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { elements, helperFns } from './base';
+import { helperFns } from './base';
 
 export const newPage = () => {
 	const markup = `

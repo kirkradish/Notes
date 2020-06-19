@@ -1,13 +1,18 @@
-export default class NotebookModel {
-	constructor(note) {
-		this.note = note
+import moment from 'moment';
 
-		this.notes = [
-			// {id: 1, date: '06/17/2020', title: 'Placeholder', copy: 'Lorem ipsum dolor sit amet.'}
-		]
+export default class Notebook {
+	constructor() {
+		this.notes = [];
 	}
 
-	addNoteToState() {
-		this.notes.push(this.note)
+	createNewNote(newNote) {
+		this.notes.push(
+			{
+				id: Math.floor(1000 + Math.random() * 9000),
+				date: moment().format('MMMM D[,] YYYY'),
+				title: newNote.title,
+				copy: newNote.copy
+			}
+		)
 	}
 }

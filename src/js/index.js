@@ -1,4 +1,4 @@
-import NotebookModel from './models/NotebookModel';
+import Notebook from './models/NotebookModel';
 import * as homeView from './views/homeView';
 import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
@@ -17,6 +17,7 @@ window.state = state;
  * HOME
  */
 window.addEventListener('load', (event) => {
+	state.notebook = new Notebook();
 	state.page = 'home';
 	homeView.buildAddScreen();
 });
@@ -31,15 +32,26 @@ app.addEventListener('click', (e) => {
 	if (e.target.matches('.add-circle, .add-circle *')) {
 		homeView.removeAddScreen();
 		setTimeout(() => {
-			state.page = 'new-note'
+			state.page = 'new-note';
 			helperFns.showNotePad()
-			newNoteView.newPage()
-			headerView.showAppTitle();
+			headerView.showAppTitle()
 			headerView.showHeaderUtility('Save')
+			newNoteView.newPageForm()
 			utilityBarView.showUtilityBar(null, 'trash')
 		}, 100)
 	}
 	// If on Notebook (archive) page
+	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
+		state.page = 'new-note';
+		notebookView.hideNotebook()
+		headerView.removeHeaderUtility()
+		utilityBarView.removeUtilityBar()
+		setTimeout(() => {
+			newNoteView.newPageForm()
+			headerView.showHeaderUtility('Save')
+			utilityBarView.showUtilityBar(null, 'trash')
+		}, 200)
+	}
 })
 
 
@@ -49,15 +61,18 @@ app.addEventListener('click', (e) => {
 app.addEventListener('click', (e) => {
 	if (e.target.matches('.note-utility *')) {
 		if (e.target.classList.contains('fa-trash-alt')) {
-			// If there are 0 notes
-			// Go to archive page and give note of 'No notes to show, add one now?'?
-			// Use this for now
-			headerView.removeHeader()
-			helperFns.removeNotePad()
-			utilityBarView.removeUtilityBar()
-			setTimeout(() => {
-				homeView.buildAddScreen()
-			}, 100)
+			if (state.notebook.notes.length > 0) {
+				
+			} else {
+				// Go to archive page and give note of 'No notes to show, add one now?'?
+				// FOR NOW: Go back to homepage
+				headerView.removeHeader()
+				helperFns.removeNotePad()
+				utilityBarView.removeUtilityBar()
+				setTimeout(() => {
+					homeView.buildAddScreen()
+				}, 100)
+			}
 		}
 		// If note count > 0, remove from state and UI
 	}
@@ -74,13 +89,11 @@ app.addEventListener('click', (e) => {
 		// Save Note
 		if (instructionBtn.textContent === 'Save') {
 			// Add Note to state
-			const title = newNoteView.getNoteTitle();
-			const copy = newNoteView.getNoteCopy();
+			const noteValues = newNoteView.getFieldValues();
 			
-			if (title !== '' && copy !== '') {
-				const newNote = newNoteView.createNewNote();
-				state.notebookModel = new NotebookModel(newNote);
-				state.notebookModel.addNoteToState();
+			if (noteValues.title !== '', noteValues.copy !== '') {
+				state.notebook.createNewNote(noteValues)
+				console.log(state.notebook);
 				// Remove new sheet
 				document.querySelector('.form-box').classList.add('new-note-right')
 				// Remove 'Save' button from UI & DOM
@@ -88,10 +101,11 @@ app.addEventListener('click', (e) => {
 				setTimeout(() => {
 					instructionBtn.parentNode.removeChild(instructionBtn)
 					document.querySelector('.form-box').parentNode.removeChild(document.querySelector('.form-box'))
+					utilityBarView.removeUtilityBar()
 					notebookController();
 				}, 200)
 			} else {
-				console.log('Do something if user enters no notes');
+			// 	console.log('Do something if user enters no notes');
 			}
 		}
 	}
@@ -104,6 +118,7 @@ app.addEventListener('click', (e) => {
  */
 const notebookController = () => {
 	// Slide in notebookView
-	notebookView.showNotebook(state.notebookModel.notes);
+	utilityBarView.showUtilityBar(null, 'new')
+	notebookView.showNotebook(state.notebook.notes);
 	headerView.showHeaderUtility('Edit')
 }

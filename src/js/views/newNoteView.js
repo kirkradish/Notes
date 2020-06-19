@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { helperFns } from './base';
 
-export const newPage = () => {
+export const newPageForm = () => {
 	const markup = `
 		<div class="form-box">
 			<input type="text" class="title-field" placeholder="Title">
@@ -12,22 +12,9 @@ export const newPage = () => {
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 }
 
-
-
-// These will go in NotebookModel ?
-export const createNewNote = () => {
-	const note = {
-		id: Math.floor(1000 + Math.random() * 9000),
-		date: moment().format('MMMM D[,] YYYY'),
-		title: getNoteTitle(),
-		copy: getNoteCopy()
+export const getFieldValues = () => {
+	return {
+		title: document.querySelector('.title-field').value,
+		copy: document.querySelector('.note-field').value
 	}
-	return note;
-}
-
-export const getNoteTitle = () => {
-	return document.querySelector('.title-field').value
-}
-export const getNoteCopy = () => {
-	return document.querySelector('.note-field').value
 }

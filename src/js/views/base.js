@@ -3,9 +3,11 @@ export const app = document.querySelector('#app');
 
 export const helperFns = {
 	showNotePad: () => {
-		const notePadSheet = `<div class="notebook-container"></div>`;
-		app.insertAdjacentHTML('beforeend', notePadSheet)
-		document.querySelector('.notebook-container').classList.add('move-in-up')
+		if (!document.body.contains(document.querySelector('.notebook-container'))) {
+			const notePadSheet = `<div class="notebook-container"></div>`;
+			app.insertAdjacentHTML('beforeend', notePadSheet)
+			document.querySelector('.notebook-container').classList.add('move-in-up')
+		}
 	},
 	removeNotePad: () => {
 		const notePadSheet = `<div class="notebook-container"></div>`;

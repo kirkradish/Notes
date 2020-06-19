@@ -7,6 +7,14 @@ export const showNotebook = (notes) => {
 	notes.forEach(note => addNoteToUI(note))
 }
 
+export const hideNotebook = () => {
+	const notebook = document.querySelector('.notebook')
+	notebook.classList.add('move-out-down')
+	setTimeout(() => {
+		notebook.parentNode.removeChild(notebook)
+	}, 200)
+}
+
 export const addNoteToUI = (note) => {
 	const markup = `
 		<div class="note">

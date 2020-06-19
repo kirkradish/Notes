@@ -62,7 +62,11 @@ app.addEventListener('click', (e) => {
 	if (e.target.matches('.note-utility *')) {
 		if (e.target.classList.contains('fa-trash-alt')) {
 			if (state.notebook.notes.length > 0) {
-				
+				newNoteView.clearForm()
+				newNoteView.removeNewPageForm()
+				headerView.removeHeaderUtility()
+				utilityBarView.removeUtilityBar()
+				notebookController()
 			} else {
 				// Go to archive page and give note of 'No notes to show, add one now?'?
 				// FOR NOW: Go back to homepage
@@ -93,7 +97,6 @@ app.addEventListener('click', (e) => {
 			
 			if (noteValues.title !== '', noteValues.copy !== '') {
 				state.notebook.createNewNote(noteValues)
-				console.log(state.notebook);
 				// Remove new sheet
 				document.querySelector('.form-box').classList.add('new-note-right')
 				// Remove 'Save' button from UI & DOM

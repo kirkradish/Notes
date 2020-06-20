@@ -150,10 +150,15 @@ app.addEventListener('click', (e) => {
 	}
 	// Trash Existing Note
 	if (e.target.matches('.delete-box, .delete-box *')) {
-		const noteId = e.target.closest('.note').id;
+		const noteId = Number(e.target.closest('.note').id);
 		const noteToDelete = e.target.closest('.note');
-		console.log(noteId);
+
 		// Delete from State
+		state.notebook.notes.forEach((cur, i) => {
+			if (cur.id === noteId) {
+				state.notebook.notes.splice(state.notebook.notes[i], 1);
+			}
+		})
 		// Delete from UI
 		noteToDelete.parentNode.removeChild(noteToDelete)
 

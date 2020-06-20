@@ -55,33 +55,6 @@ app.addEventListener('click', (e) => {
 })
 
 
-/**
- * TRASH NOTE
- */
-app.addEventListener('click', (e) => {
-	if (e.target.matches('.note-utility *')) {
-		if (e.target.classList.contains('fa-trash-alt')) {
-			if (state.notebook.notes.length > 0) {
-				newNoteView.clearForm()
-				newNoteView.removeNewPageForm()
-				headerView.removeHeaderUtility()
-				utilityBarView.removeUtilityBar()
-				notebookController()
-			} else {
-				// Go to archive page and give note of 'No notes to show, add one now?'?
-				// FOR NOW: Go back to homepage
-				headerView.removeHeader()
-				helperFns.removeNotePad()
-				utilityBarView.removeUtilityBar()
-				setTimeout(() => {
-					homeView.buildAddScreen()
-				}, 100)
-			}
-		}
-		// If note count > 0, remove from state and UI
-	}
-})
-
 
 /**
  * SAVE NOTE
@@ -125,3 +98,65 @@ const notebookController = () => {
 	notebookView.showNotebook(state.notebook.notes);
 	headerView.showHeaderUtility('Edit')
 }
+
+
+
+/**
+ * EDIT NOTE
+ */
+app.addEventListener('click', (e) => {
+	if (e.target.matches('.app-editor, .app-editor *')) {
+		const instructionBtn = document.querySelector('.app-editor');
+		if (instructionBtn.textContent === 'Edit') {
+			notebookView.onEditNote()
+			headerView.removeHeaderUtility()
+			headerView.showHeaderUtility('Done')
+		}
+		if (instructionBtn.textContent === 'Done') {
+			notebookView.onDoneEditingNote()
+			headerView.removeHeaderUtility()
+			headerView.showHeaderUtility('Edit')
+		}
+	}
+})
+
+
+
+/**
+ * TRASH NOTE
+ */
+app.addEventListener('click', (e) => {
+	// Trash New Note
+	if (e.target.matches('.note-utility *')) {
+		if (e.target.classList.contains('fa-trash-alt')) {
+			if (state.notebook.notes.length > 0) {
+				newNoteView.clearForm()
+				newNoteView.removeNewPageForm()
+				headerView.removeHeaderUtility()
+				utilityBarView.removeUtilityBar()
+				notebookController()
+			} else {
+				// Go to archive page and give note of 'No notes to show, add one now?'?
+				// FOR NOW: Go back to homepage
+				headerView.removeHeader()
+				helperFns.removeNotePad()
+				utilityBarView.removeUtilityBar()
+				setTimeout(() => {
+					homeView.buildAddScreen()
+				}, 100)
+			}
+		}
+		// If note count > 0, remove from state and UI
+	}
+	// Trash Existing Note
+	if (e.target.matches('.delete-box, .delete-box *')) {
+		const noteId = e.target.closest('.note').id;
+		const noteToDelete = e.target.closest('.note');
+		console.log(noteId);
+		// Delete from State
+		// Delete from UI
+		noteToDelete.parentNode.removeChild(noteToDelete)
+
+	}
+
+})

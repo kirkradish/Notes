@@ -238,9 +238,14 @@ body {
  * INDIVIDUAL NOTE PREVIEWS
  */
 .note {
+	display: flex;
 	padding: 15px 0;
 	border-bottom: 1px solid #595959;
 	transform: translateX(0);
+}
+.note-preview {
+	width: 100%;
+	transition: width .2s linear;
 }
 .note-header {
 	display: flex;
@@ -264,6 +269,18 @@ body {
 }
 .notebook-to-right {
 	animation: notebookToRight .2s ease-in;
+}
+.edit-note {
+	width: 80%;
+	transition: width .2s linear;
+}
+.delete-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20%;
+	font-size: 1.25rem;
+	color: #b48727;
 }
 
 @keyframes notebookToRight {

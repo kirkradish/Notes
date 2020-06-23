@@ -1,5 +1,8 @@
-export const app = document.querySelector('#app');
+import * as headerView from './headerView';
+import * as utilityBarView from './utilityBarView';
+import * as homeView from './homeView';
 
+export const app = document.querySelector('#app');
 
 export const helperFns = {
 	showNotePad: () => {
@@ -17,5 +20,13 @@ export const helperFns = {
 		setTimeout(() => {
 			notebookContainer.parentNode.removeChild(notebookContainer)
 		}, 300)
+	},
+	notepadToHomepage: () => {
+		headerView.removeHeader()
+		helperFns.removeNotePad()
+		utilityBarView.removeUtilityBar()
+		setTimeout(() => {
+			homeView.buildAddScreen()
+		}, 100)
 	}
 }

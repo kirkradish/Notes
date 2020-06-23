@@ -138,12 +138,7 @@ app.addEventListener('click', (e) => {
 			} else {
 				// Go to archive page and give note of 'No notes to show, add one now?'?
 				// FOR NOW: Go back to homepage
-				headerView.removeHeader()
-				helperFns.removeNotePad()
-				utilityBarView.removeUtilityBar()
-				setTimeout(() => {
-					homeView.buildAddScreen()
-				}, 100)
+				helperFns.notepadToHomepage();
 			}
 		}
 		// If note count > 0, remove from state and UI
@@ -161,7 +156,9 @@ app.addEventListener('click', (e) => {
 		})
 		// Delete from UI
 		noteToDelete.parentNode.removeChild(noteToDelete)
-
+		if (state.notebook.notes.length === 0) {
+			helperFns.notepadToHomepage();
+		}
 	}
 
 })

@@ -1,4 +1,4 @@
-export const showNotebookSheet = (moverClass) => {
+export const showNotebookContainer = (moverClass) => {
 	const notePadSheet = `<div class="notebook-container"></div>`;
 	app.insertAdjacentHTML('beforeend', notePadSheet)
 	if (moverClass != '') {
@@ -14,8 +14,8 @@ export const removeNotebookContainer = (moverClass) => {
 	}, 200)
 }
 
-export const showNotebook = (notes, direction) => {
-	const markup = `<div class="notebook ${direction}"></div>`
+export const showNotebook = (notes, moverClass) => {
+	const markup = `<div class="notebook ${moverClass}"></div>`
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 
 	if (notes) {

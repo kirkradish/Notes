@@ -9,7 +9,6 @@ export const app = document.querySelector('#app');
 
 export const helperFns = {
 	removeNotePad: () => {
-		const notePadSheet = `<div class="notebook-container"></div>`;
 		const notebookContainer = document.querySelector('.notebook-container')
 		notebookContainer.classList.remove('move-in-up')
 		notebookContainer.classList.add('move-out-down')
@@ -22,7 +21,7 @@ export const helperFns = {
 		helperFns.removeNotePad()
 		utilityBarView.removeUtilityBar()
 		setTimeout(() => {
-			homeView.buildAddScreen()
+			homeView.buildHomeScreen()
 		}, 100)
 	},
 	revealEditNoteForm: (title, copy) => {
@@ -49,7 +48,7 @@ export const directs = {
 		homeView.removeHomeScreen();
 		headerView.showAppTitle();
 		headerView.showHeaderUtility('Save')
-		notebookView.showNotebookSheet('move-in-up');
+		notebookView.showNotebookContainer('move-in-up');
 		newNoteView.newPageForm();
 		utilityBarView.showUtilityBar('trash');
 	},
@@ -60,7 +59,12 @@ export const directs = {
 		utilityBarView.removeUtilityBar();
 		homeView.buildHomeScreen();
 	},
-	formToNotes: () => {
-		console.log('show notes');
+	formToNotes: (notes) => {
+		headerView.removeHeaderUtility();
+		headerView.showHeaderUtility('Edit');
+		utilityBarView.removeUtilityBar();
+		utilityBarView.showUtilityBar('new');
+		newNoteView.removeNewPageForm('move-right-out')
+		notebookView.showNotebook(notes, 'move-right-in');
 	}
 }

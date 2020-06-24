@@ -42,14 +42,14 @@ body {
 	font-size: 1.625em; /*26px*/
 	color: #1c6747;
 }
-.app-editor {
+/* .app-editor {
 	cursor: pointer;
 	animation: editUp .3s ease-out;
 }
 @keyframes editUp {
 	0% {transform: translateY(15px);}
 	100% {transform: translateY(0px);}
-}
+} */
 
 
 
@@ -245,9 +245,6 @@ body {
 	line-height: 1.25;
 	color: #b7b7b7;
 }
-.notebook-to-right {
-	animation: notebookToRight .2s ease-in;
-}
 .edit-note {
 	width: 80%;
 	transition: width .2s linear;
@@ -261,14 +258,6 @@ body {
 	color: #b48727;
 }
 
-@keyframes notebookToRight {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(0);
-	}
-}
 
 
 
@@ -306,25 +295,27 @@ body {
 	0% {transform: scale(1, 1);}
 	100% {transform: scale(0, 0); opacity: 0;}
 }
-.maximize-in {animation: maximizeIn .2s ease;}
+.maximize-in {animation: maximizeIn .3s ease;}
 .minimize-out {animation: minimizeOut .4s ease-in;}
 
-
 /* RIGHT */
-@keyframes moveRightOff {
+@keyframes moveRightOut {
 	0% {transform: translateX(0%);}
 	100%{transform: translateX(100%);}
 }
-.move-right-out {animation: moveRightOff .2s ease-in;}
+.move-right-out {animation: moveRightOut .3s ease-in;}
+
+
+@keyframes moveRightIn {
+	0% {transform: translateX(-100%);}
+	100% {transform: translateX(0);}
+}
+.move-right-in {animation: moveRightIn .2s ease-in;}
 
 
 /* DOWN */
 @keyframes moveDownOut {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(100%);
-	}
+	0% {transform: translateY(0);}
+	100% {transform: translateY(100%);}
 }
 .move-down-out {animation: moveDownOut .4s ease;}

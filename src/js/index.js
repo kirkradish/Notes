@@ -38,8 +38,15 @@ app.addEventListener('click', (e) => {
 app.addEventListener('click', (e) => {
 	// Save
 	if (e.target.matches('.app-editor, .app-editor *')) {
-		directs.formToNotes();
+		const noteValues = newNoteView.getFieldValues();
+		if (noteValues.title !== '', noteValues.copy !== '') {
+			state.notebook.createNewNote(noteValues)
+			console.log(state.notebook.notes);
+		}
+
+		directs.formToNotes(state.notebook.notes);
 		state.page = 'notebook';
+		// notebookController();
 	}
 	// Trash
 	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
@@ -73,39 +80,6 @@ app.addEventListener('click', (e) => {
 
 
 /**
- * SAVE NOTE
- */
-app.addEventListener('click', (e) => {
-	if (e.target.matches('.app-editor, .app-editor *')) {
-		const instructionBtn = document.querySelector('.app-editor');
-		
-		// Save Note
-		if (instructionBtn.textContent === 'Save') {
-			// Add Note to state
-			const noteValues = newNoteView.getFieldValues();
-			
-			if (noteValues.title !== '', noteValues.copy !== '') {
-				state.notebook.createNewNote(noteValues)
-				// Remove new sheet
-				document.querySelector('.form-box').classList.add('new-note-right')
-				// Remove 'Save' button from UI & DOM
-				instructionBtn.classList.add('new-note-right')
-				setTimeout(() => {
-					instructionBtn.parentNode.removeChild(instructionBtn)
-					document.querySelector('.form-box').parentNode.removeChild(document.querySelector('.form-box'))
-					utilityBarView.removeUtilityBar()
-					notebookController();
-				}, 200)
-			} else {
-			// 	console.log('Do something if user enters no notes');
-			}
-		}
-	}
-});
-
-
-
-/**
  * NOTEBOOK CONTROLLER
  */
 const notebookController = () => {
@@ -132,21 +106,21 @@ const notebookController = () => {
 /**
  * EDIT NOTE
  */
-app.addEventListener('click', (e) => {
-	if (e.target.matches('.app-editor, .app-editor *')) {
-		const instructionBtn = document.querySelector('.app-editor');
-		if (instructionBtn.textContent === 'Edit') {
-			notebookView.onEditNote()
-			headerView.removeHeaderUtility()
-			headerView.showHeaderUtility('Done')
-		}
-		if (instructionBtn.textContent === 'Done') {
-			notebookView.onDoneEditingNote()
-			headerView.removeHeaderUtility()
-			headerView.showHeaderUtility('Edit')
-		}
-	}
-})
+// app.addEventListener('click', (e) => {
+// 	if (e.target.matches('.app-editor, .app-editor *')) {
+// 		const instructionBtn = document.querySelector('.app-editor');
+// 		if (instructionBtn.textContent === 'Edit') {
+// 			notebookView.onEditNote()
+// 			headerView.removeHeaderUtility()
+// 			headerView.showHeaderUtility('Done')
+// 		}
+// 		if (instructionBtn.textContent === 'Done') {
+// 			notebookView.onDoneEditingNote()
+// 			headerView.removeHeaderUtility()
+// 			headerView.showHeaderUtility('Edit')
+// 		}
+// 	}
+// })
 
 
 

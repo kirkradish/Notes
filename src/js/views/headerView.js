@@ -1,4 +1,4 @@
-import { app, helperFns } from './base';
+import { app } from './base';
 
 const createHeader = () => {
 	const markup = `<header class="app-header"></header>`;
@@ -28,11 +28,12 @@ export const showHeaderUtility = (instruction) => {
 	setTimeout(() => {
 		header.insertAdjacentHTML('beforeend', instructionDiv)
 		const instructionBtn = document.querySelector('.app-editor')
+		instructionBtn.classList.add()
 	}, 200)
 }
 
 export const removeHeaderUtility = () => {
 	const editToggle = document.querySelector('.app-editor')
-	editToggle.classList.add('move-out-down')
+	editToggle.classList.add('move-down-out')
 	editToggle.parentNode.removeChild(editToggle)
 }

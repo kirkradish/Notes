@@ -1,6 +1,3 @@
-import moment from 'moment';
-import { helperFns } from './base';
-
 export const newPageForm = () => {
 	const markup = `
 		<div class="form-box">
@@ -11,9 +8,13 @@ export const newPageForm = () => {
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 }
 
-export const removeNewPageForm = () => {
+export const removeNewPageForm = (moverClass) => {
+	clearForm();
 	const formBox = document.querySelector('.form-box');
-	formBox.parentNode.removeChild(formBox);
+	formBox.classList.add(moverClass);
+	setTimeout(() => {
+		formBox.parentNode.removeChild(formBox);
+	}, 200);
 }
 
 export const clearForm = () => {

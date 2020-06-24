@@ -103,7 +103,10 @@ const notebookController = () => {
 		cur.addEventListener('click', (e) => {
 			const noteTitle = notes[i].querySelector('.note-title').textContent;
 			const noteCopy = notes[i].querySelector('.note-copy').textContent;
-			// console.log(`Title: ${noteTitle} and copy: ${noteCopy}`);
+			
+			helperFns.removeNotePad();
+			helperFns.revealNoteForm(noteTitle, noteCopy);
+
 		})
 	})
 }

@@ -1,6 +1,7 @@
 import * as headerView from './headerView';
 import * as utilityBarView from './utilityBarView';
 import * as homeView from './homeView';
+import * as newNoteView from './newNoteView';
 
 export const app = document.querySelector('#app');
 
@@ -28,5 +29,15 @@ export const helperFns = {
 		setTimeout(() => {
 			homeView.buildAddScreen()
 		}, 100)
+	},
+	revealNoteForm: (title, copy) => {
+		setTimeout(() => {
+			helperFns.showNotePad()
+			setTimeout(() => {
+				newNoteView.newPageForm();
+				document.querySelector('.title-field').value = title;
+				document.querySelector('.note-field').textContent = copy;
+			}, 300);
+		}, 300);
 	}
 }

@@ -21,8 +21,9 @@ window.addEventListener('load', (event) => {
 	state.page = 'home';
 	homeView.buildHomeScreen();
 });
+
 /**
- * CONTROL HOME
+ * HOME: NEW NOTE
  */
 app.addEventListener('click', (e) => {
 	if (e.target.matches('.add-circle, .add-circle *')) {
@@ -33,23 +34,24 @@ app.addEventListener('click', (e) => {
 
 
 /**
- * CONTROL NEW NOTE
+ * FORM
  */
 app.addEventListener('click', (e) => {
-	// Save
+	// Save Note from Form
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		if (e.target.closest('.app-editor').classList.contains('save')) {
 			const noteValues = newNoteView.getFieldValues();
 			if (noteValues.title !== '', noteValues.copy !== '') {
 				state.notebook.createNewNote(noteValues)
+				directs.formToNotes(state.notebook.notes);
+				state.page = 'notebook';
+			} else {
+				// title must not be blank
+				// copy must not be blank
 			}
-
-			directs.formToNotes(state.notebook.notes);
-			state.page = 'notebook';
-			// notebookController();
 		}
 	}
-	// Trash New Note from Form
+	// Trash Note from Form
 	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
 		if (state.notebook.notes.length === 0) {
 			directs.formToHome();
@@ -62,48 +64,16 @@ app.addEventListener('click', (e) => {
 
 
 
-
 /**
- * ADD NEW NOTE
- * Go to New Note page with form
+ * NOTEBOOK
  */
 app.addEventListener('click', (e) => {
-	// If on Notebook (archive) page
+	// Add New Note
 	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
 		directs.notesToForm();
 		state.page = 'new-note';
 	}
-})
-
-
-
-/**
- * NOTEBOOK CONTROLLER
- */
-const notebookController = () => {
-	// Slide in notebookView
-	utilityBarView.showUtilityBar(null, 'new')
-	notebookView.showNotebook(state.notebook.notes);
-	headerView.showHeaderUtility('Edit')
-
-	const notes = document.querySelectorAll('.note');
-	notes.forEach((cur, i) => {
-		cur.addEventListener('click', (e) => {
-			const noteTitle = notes[i].querySelector('.note-title').textContent;
-			const noteCopy = notes[i].querySelector('.note-copy').textContent;
-			
-			helperFns.revealEditNoteForm(noteTitle, noteCopy);
-
-		})
-	})
-}
-
-
-
-/**
- * EDIT NOTE
- */
-app.addEventListener('click', (e) => {
+	// Click Edit for Edit Mode
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		if (e.target.closest('.app-editor').classList.contains('edit')) {
 			notebookView.onEditNote()
@@ -117,6 +87,25 @@ app.addEventListener('click', (e) => {
 		}
 	}
 })
+
+
+
+/**
+ * NOTEBOOK CONTROLLER
+ */
+const notebookController = () => {
+
+	const notes = document.querySelectorAll('.note');
+	notes.forEach((cur, i) => {
+		cur.addEventListener('click', (e) => {
+			const noteTitle = notes[i].querySelector('.note-title').textContent;
+			const noteCopy = notes[i].querySelector('.note-copy').textContent;
+			
+			helperFns.revealEditNoteForm(noteTitle, noteCopy);
+
+		})
+	})
+}
 
 
 

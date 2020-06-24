@@ -97,6 +97,15 @@ const notebookController = () => {
 	utilityBarView.showUtilityBar(null, 'new')
 	notebookView.showNotebook(state.notebook.notes);
 	headerView.showHeaderUtility('Edit')
+
+	const notes = document.querySelectorAll('.note');
+	notes.forEach((cur, i) => {
+		cur.addEventListener('click', (e) => {
+			const noteTitle = notes[i].querySelector('.note-title').textContent;
+			const noteCopy = notes[i].querySelector('.note-copy').textContent;
+			// console.log(`Title: ${noteTitle} and copy: ${noteCopy}`);
+		})
+	})
 }
 
 

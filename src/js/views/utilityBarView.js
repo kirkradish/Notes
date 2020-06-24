@@ -1,6 +1,6 @@
 import { app } from './base';
 
-export const showUtilityBar = (info, icon) => {
+export const showUtilityBar = (icon, info = '') => {
 	const markup = `
 		<div class="utility-bar">
 			<div class="note-count">${info}</div>

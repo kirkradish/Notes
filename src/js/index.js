@@ -4,7 +4,7 @@ import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
 import * as notebookView from './views/notebookView';
 import * as utilityBarView from './views/utilityBarView.js';
-import { app, helperFns } from './views/base';
+import { app, helperFns, directs } from './views/base';
 
 
 const state = {}
@@ -14,13 +14,28 @@ window.state = state;
 
 
 /**
- * HOME
+ * START AT HOME
  */
 window.addEventListener('load', (event) => {
 	state.notebook = new Notebook();
 	state.page = 'home';
-	homeView.buildAddScreen();
+	homeView.buildHomeScreen();
 });
+/**
+ * CONTROL HOME
+ */
+app.addEventListener('click', (e) => {
+	if (e.target.matches('.add-circle, .add-circle *')) {
+		directs.homeToForm();
+		state.page = 'new-note';
+	}
+});
+
+
+
+
+
+
 
 
 /**
@@ -28,18 +43,6 @@ window.addEventListener('load', (event) => {
  * Go to New Note page with form
  */
 app.addEventListener('click', (e) => {
-	// If on Home page
-	if (e.target.matches('.add-circle, .add-circle *')) {
-		homeView.removeAddScreen();
-		setTimeout(() => {
-			state.page = 'new-note';
-			helperFns.showNotePad()
-			headerView.showAppTitle()
-			headerView.showHeaderUtility('Save')
-			newNoteView.newPageForm()
-			utilityBarView.showUtilityBar(null, 'trash')
-		}, 100)
-	}
 	// If on Notebook (archive) page
 	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
 		state.page = 'new-note';

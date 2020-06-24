@@ -8,7 +8,6 @@ export const newPageForm = () => {
 			<textarea class="note-field" placeholder="What's up?"></textarea>
 		</div>
 	`;
-	
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 }
 

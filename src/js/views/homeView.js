@@ -1,6 +1,6 @@
 import { app, helperFns } from './base';
 
-export const buildAddScreen = () => {
+export const buildHomeScreen = () => {
 	const markup = `
 		<div class="add-container">
 			<p>Something on your mind?</p>
@@ -9,13 +9,13 @@ export const buildAddScreen = () => {
 		</div>
 	`;
 	app.insertAdjacentHTML('beforeend', markup);
-	document.querySelector('.add-container').classList.add('appear')
+	document.querySelector('.add-container').classList.add('maximize-in')
 }
 
-export const removeAddScreen = (showNextPage) => {
+export const removeHomeScreen = () => {
 	const addContainer = document.querySelector('.add-container')
-	document.querySelector('.add-container').classList.remove('appear')
-	addContainer.classList.add('disappear')
+	document.querySelector('.add-container').classList.remove('maximize-in')
+	addContainer.classList.add('minimize-out')
 
 	setTimeout(() => {
 		addContainer.parentNode.removeChild(addContainer)

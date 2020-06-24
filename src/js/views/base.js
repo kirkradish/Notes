@@ -2,17 +2,12 @@ import * as headerView from './headerView';
 import * as utilityBarView from './utilityBarView';
 import * as homeView from './homeView';
 import * as newNoteView from './newNoteView';
+import * as notebookView from './notebookView';
 
 export const app = document.querySelector('#app');
 
+
 export const helperFns = {
-	showNotePad: () => {
-		if (!document.body.contains(document.querySelector('.notebook-container'))) {
-			const notePadSheet = `<div class="notebook-container"></div>`;
-			app.insertAdjacentHTML('beforeend', notePadSheet)
-			document.querySelector('.notebook-container').classList.add('move-in-up')
-		}
-	},
 	removeNotePad: () => {
 		const notePadSheet = `<div class="notebook-container"></div>`;
 		const notebookContainer = document.querySelector('.notebook-container')
@@ -32,7 +27,7 @@ export const helperFns = {
 	},
 	revealEditNoteForm: (title, copy) => {
 		const notebook = document.querySelector('.notebook');
-		notebook.classList.add('move-right-off');
+		notebook.classList.add('move-right-out');
 		setTimeout(() => {
 			notebook.parentNode.removeChild(notebook)
 			headerView.removeHeaderUtility()
@@ -44,6 +39,18 @@ export const helperFns = {
 			}, 200)
 		}, 190)
 		utilityBarView.removeUtilityBar()
-		utilityBarView.showUtilityBar('Discard Changes', 'trash')
+		// utilityBarView.showUtilityBar('Discard Changes', 'trash')
+	}
+}
+
+
+export const directs = {
+	homeToForm: () => {
+		homeView.removeHomeScreen();
+		headerView.showAppTitle();
+		headerView.showHeaderUtility('Save')
+		notebookView.showNotebookSheet('move-in-up');
+		newNoteView.newPageForm();
+		utilityBarView.showUtilityBar('trash');
 	}
 }

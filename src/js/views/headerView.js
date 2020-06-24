@@ -1,19 +1,19 @@
 import { app, helperFns } from './base';
 
 const createHeader = () => {
-	const markup = '<header class="app-header"></header>';
+	const markup = `<header class="app-header"></header>`;
 	app.insertAdjacentHTML('afterbegin', markup);
+	setTimeout(() => {
+		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
+	}, 200)
 }
 
 export const showAppTitle = () => {
-	const markup = `
-		<h1 class="app-title">Notes</h1>
-	`;
+	const markup = `<h1 class="app-title">Notes</h1>`;
 	createHeader();
 	setTimeout(() => {
 		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
 	}, 200)
-	// add class to animate title up
 }
 
 export const removeHeader = () => {

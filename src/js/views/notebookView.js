@@ -1,10 +1,18 @@
-import { helperFns } from './base';
+export const showNotebookSheet = (moverClass) => {
+	const notePadSheet = `<div class="notebook-container"></div>`;
+	app.insertAdjacentHTML('beforeend', notePadSheet)
+	if (moverClass != '') {
+		document.querySelector('.notebook-container').classList.add(`${moverClass}`)
+	}
+}
 
-export const showNotebook = (notes) => {
-	const markup = `<div class="notebook notebook-to-right"></div>`
+export const showNotebook = (notes, direction) => {
+	const markup = `<div class="notebook ${direction}"></div>`
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
 
-	notes.forEach(note => addNoteToUI(note))
+	if (notes) {
+		notes.forEach(note => addNoteToUI(note))
+	}
 }
 
 export const hideNotebook = () => {

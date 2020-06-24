@@ -129,19 +129,6 @@ body {
 	font-size: 3.125rem; /*50px*/
 	color: #e4e8e9;
 }
-.appear {animation: scaleUp .2s ease;}
-.disappear {animation: scaleDown .4s ease-in;}
-@keyframes scaleDown {
-	0% {transform: scale(1, 1);}
-	100% {transform: scale(0, 0); opacity: 0;}
-}
-@keyframes scaleUp {
-	0% {transform: scale(0, 0); opacity: 0;}
-	100% {transform: scale(1, 1); opacity: 1;}
-}
-
-
-
 
 
 /**
@@ -320,7 +307,19 @@ body {
 /**
  * ANIMATIONS
  */
-.move-right-off {
+ .maximize-in {animation: maximizeIn .2s ease;}
+ .minimize-out {animation: minimizeOut .4s ease-in;}
+ @keyframes maximizeIn {
+	 0% {transform: scale(0, 0); opacity: 0;}
+	 100% {transform: scale(1, 1); opacity: 1;}
+ }
+ @keyframes minimizeOut {
+	 0% {transform: scale(1, 1);}
+	 100% {transform: scale(0, 0); opacity: 0;}
+ }
+ 
+
+.move-right-out {
 	animation: moveRightOff .2s ease-in;
 }
 @keyframes moveRightOff {

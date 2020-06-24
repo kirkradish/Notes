@@ -64,5 +64,13 @@ export const directs = {
 		headerView.removeHeader();
 		utilityBarView.removeUtilityBar();
 		homeView.buildHomeScreen();
+	},
+	notesToForm: () => {
+		headerView.removeHeaderUtility();
+		headerView.showHeaderUtility('save', 'Save');
+		notebookView.removeNotebook();
+		newNoteView.newPageForm();
+		utilityBarView.removeUtilityBar();
+		utilityBarView.showUtilityBar('trash');
 	}
 }

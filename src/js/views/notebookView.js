@@ -23,12 +23,10 @@ export const showNotebook = (notes, moverClass) => {
 	}
 }
 
-export const hideNotebook = () => {
+export const removeNotebook = () => {
 	const notebook = document.querySelector('.notebook')
 	notebook.classList.add('move-out-down')
-	setTimeout(() => {
-		notebook.parentNode.removeChild(notebook)
-	}, 200)
+	notebook.parentNode.removeChild(notebook)
 }
 
 export const addNoteToUI = (note) => {

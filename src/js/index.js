@@ -49,10 +49,14 @@ app.addEventListener('click', (e) => {
 			// notebookController();
 		}
 	}
-	// Trash
+	// Trash New Note from Form
 	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
-		directs.formToHome();
-		state.page = 'home';
+		if (state.notebook.notes.length === 0) {
+			directs.formToHome();
+			state.page = 'home';
+		} else {
+			directs.formToNotes(state.notebook.notes);
+		}
 	}
 })
 
@@ -66,15 +70,8 @@ app.addEventListener('click', (e) => {
 app.addEventListener('click', (e) => {
 	// If on Notebook (archive) page
 	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
+		directs.notesToForm();
 		state.page = 'new-note';
-		notebookView.hideNotebook()
-		headerView.removeHeaderUtility()
-		utilityBarView.removeUtilityBar()
-		setTimeout(() => {
-			newNoteView.newPageForm()
-			headerView.showHeaderUtility('Save')
-			utilityBarView.showUtilityBar(null, 'trash')
-		}, 200)
 	}
 })
 
@@ -128,21 +125,23 @@ app.addEventListener('click', (e) => {
  */
 app.addEventListener('click', (e) => {
 	// Trash Existing Note
-	if (e.target.matches('.delete-box, .delete-box *')) {
-		const noteId = Number(e.target.closest('.note').id);
-		const noteToDelete = e.target.closest('.note');
+	// if (e.target.matches('.delete-box, .delete-box *')) {
+	// 	const noteId = Number(e.target.closest('.note').id);
+	// 	const noteToDelete = e.target.closest('.note');
 
-		// Delete from State
-		state.notebook.notes.forEach((cur, i) => {
-			if (cur.id === noteId) {
-				state.notebook.notes.splice(state.notebook.notes[i], 1);
-			}
-		})
-		// Delete from UI
-		noteToDelete.parentNode.removeChild(noteToDelete)
-		if (state.notebook.notes.length === 0) {
-			directs.notesToHome();
-		}
-	}
+	// 	// Delete from State
+	// 	state.notebook.notes.forEach((cur, i) => {
+	// 		if (cur.id === noteId) {
+	// 			console.log(state.notebook.notes.title)
+	// 			state.notebook.notes.splice(state.notebook.notes[i], 1);
+	// 		}
+	// 	})
 
+	// 	// Delete from UI
+	// 	noteToDelete.parentNode.removeChild(noteToDelete)
+	// 	if (state.notebook.notes.length === 0) {
+	// 		console.log('2')
+	// 		directs.notesToHome();
+	// 	}
+	// }
 })

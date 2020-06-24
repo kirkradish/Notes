@@ -16,14 +16,6 @@ export const helperFns = {
 			notebookContainer.parentNode.removeChild(notebookContainer)
 		}, 300)
 	},
-	notepadToHomepage: () => {
-		headerView.removeHeader()
-		helperFns.removeNotePad()
-		utilityBarView.removeUtilityBar()
-		setTimeout(() => {
-			homeView.buildHomeScreen()
-		}, 100)
-	},
 	revealEditNoteForm: (title, copy) => {
 		const notebook = document.querySelector('.notebook');
 		notebook.classList.add('move-right-out');
@@ -66,5 +58,11 @@ export const directs = {
 		utilityBarView.showUtilityBar('new');
 		newNoteView.removeNewPageForm('move-right-out')
 		notebookView.showNotebook(notes, 'move-right-in');
+	},
+	notesToHome: () => {
+		notebookView.removeNotebookContainer('move-down-out');
+		headerView.removeHeader();
+		utilityBarView.removeUtilityBar();
+		homeView.buildHomeScreen();
 	}
 }

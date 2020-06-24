@@ -42,7 +42,6 @@ app.addEventListener('click', (e) => {
 			const noteValues = newNoteView.getFieldValues();
 			if (noteValues.title !== '', noteValues.copy !== '') {
 				state.notebook.createNewNote(noteValues)
-				console.log(state.notebook.notes);
 			}
 
 			directs.formToNotes(state.notebook.notes);
@@ -96,7 +95,6 @@ const notebookController = () => {
 			const noteTitle = notes[i].querySelector('.note-title').textContent;
 			const noteCopy = notes[i].querySelector('.note-copy').textContent;
 			
-			// helperFns.removeNotePad();
 			helperFns.revealEditNoteForm(noteTitle, noteCopy);
 
 		})
@@ -143,7 +141,7 @@ app.addEventListener('click', (e) => {
 		// Delete from UI
 		noteToDelete.parentNode.removeChild(noteToDelete)
 		if (state.notebook.notes.length === 0) {
-			helperFns.notepadToHomepage();
+			directs.notesToHome();
 		}
 	}
 

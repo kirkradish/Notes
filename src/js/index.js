@@ -32,8 +32,21 @@ app.addEventListener('click', (e) => {
 });
 
 
-
-
+/**
+ * CONTROL NEW NOTE
+ */
+app.addEventListener('click', (e) => {
+	// Save
+	if (e.target.matches('.app-editor, .app-editor *')) {
+		directs.formToNotes();
+		state.page = 'notebook';
+	}
+	// Trash
+	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
+		directs.formToHome();
+		state.page = 'home';
+	}
+})
 
 
 
@@ -141,23 +154,6 @@ app.addEventListener('click', (e) => {
  * TRASH NOTE
  */
 app.addEventListener('click', (e) => {
-	// Trash New Note
-	if (e.target.matches('.note-utility *')) {
-		if (e.target.classList.contains('fa-trash-alt')) {
-			if (state.notebook.notes.length > 0) {
-				newNoteView.clearForm()
-				newNoteView.removeNewPageForm()
-				headerView.removeHeaderUtility()
-				utilityBarView.removeUtilityBar()
-				notebookController()
-			} else {
-				// Go to archive page and give note of 'No notes to show, add one now?'?
-				// FOR NOW: Go back to homepage
-				helperFns.notepadToHomepage();
-			}
-		}
-		// If note count > 0, remove from state and UI
-	}
 	// Trash Existing Note
 	if (e.target.matches('.delete-box, .delete-box *')) {
 		const noteId = Number(e.target.closest('.note').id);

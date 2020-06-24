@@ -6,6 +6,14 @@ export const showNotebookSheet = (moverClass) => {
 	}
 }
 
+export const removeNotebookContainer = (moverClass) => {
+	const notebookContainer = document.querySelector('.notebook-container');
+	notebookContainer.classList.add(moverClass);
+	setTimeout(() => {
+		notebookContainer.parentNode.removeChild(notebookContainer);
+	}, 200)
+}
+
 export const showNotebook = (notes, direction) => {
 	const markup = `<div class="notebook ${direction}"></div>`
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)

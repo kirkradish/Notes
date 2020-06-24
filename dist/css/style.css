@@ -149,9 +149,7 @@ body {
 .move-in-up {
 	animation: moveInUp .4s ease;
 }
-.move-out-down {
-	animation: moveOutDown .4s ease;
-}
+
 @keyframes moveInUp {
 	0% {
 		transform: translateY(100%);
@@ -160,14 +158,7 @@ body {
 		transform: translateY(0);
 	}
 }
-@keyframes moveOutDown {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(100%);
-	}
-}
+
 
 
 
@@ -307,22 +298,33 @@ body {
 /**
  * ANIMATIONS
  */
- .maximize-in {animation: maximizeIn .2s ease;}
- .minimize-out {animation: minimizeOut .4s ease-in;}
- @keyframes maximizeIn {
-	 0% {transform: scale(0, 0); opacity: 0;}
-	 100% {transform: scale(1, 1); opacity: 1;}
- }
- @keyframes minimizeOut {
-	 0% {transform: scale(1, 1);}
-	 100% {transform: scale(0, 0); opacity: 0;}
- }
- 
-
-.move-right-out {
-	animation: moveRightOff .2s ease-in;
+@keyframes maximizeIn {
+	0% {transform: scale(0, 0); opacity: 0;}
+	100% {transform: scale(1, 1); opacity: 1;}
 }
+@keyframes minimizeOut {
+	0% {transform: scale(1, 1);}
+	100% {transform: scale(0, 0); opacity: 0;}
+}
+.maximize-in {animation: maximizeIn .2s ease;}
+.minimize-out {animation: minimizeOut .4s ease-in;}
+
+
+/* RIGHT */
 @keyframes moveRightOff {
 	0% {transform: translateX(0%);}
 	100%{transform: translateX(100%);}
 }
+.move-right-out {animation: moveRightOff .2s ease-in;}
+
+
+/* DOWN */
+@keyframes moveDownOut {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(100%);
+	}
+}
+.move-down-out {animation: moveDownOut .4s ease;}

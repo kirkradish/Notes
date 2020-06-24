@@ -19,7 +19,6 @@ export const showAppTitle = () => {
 export const removeHeader = () => {
 	const header = document.querySelector('.app-header')
 	header.parentNode.removeChild(header)
-	// add class to animate title down
 }
 
 export const showHeaderUtility = (instruction) => {

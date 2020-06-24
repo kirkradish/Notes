@@ -52,5 +52,15 @@ export const directs = {
 		notebookView.showNotebookSheet('move-in-up');
 		newNoteView.newPageForm();
 		utilityBarView.showUtilityBar('trash');
+	},
+	formToHome: () => {
+		headerView.removeHeader();
+		newNoteView.clearForm();
+		notebookView.removeNotebookContainer('move-down-out');
+		utilityBarView.removeUtilityBar();
+		homeView.buildHomeScreen();
+	},
+	formToNotes: () => {
+		console.log('show notes');
 	}
 }

@@ -104,8 +104,8 @@ const notebookController = () => {
 			const noteTitle = notes[i].querySelector('.note-title').textContent;
 			const noteCopy = notes[i].querySelector('.note-copy').textContent;
 			
-			helperFns.removeNotePad();
-			helperFns.revealNoteForm(noteTitle, noteCopy);
+			// helperFns.removeNotePad();
+			helperFns.revealEditNoteForm(noteTitle, noteCopy);
 
 		})
 	})

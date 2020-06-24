@@ -296,21 +296,34 @@ body {
 
 
 @media only screen and (min-height: 800px) {
-	body {
-		/*font-size: 80%;*/
-		/*border: 1px solid red;*/
-	}
+	/* body {
+		font-size: 80%;
+		border: 1px solid red;
+	} */
 }
 
 @media only screen and (min-height: 900px) {
-	body {
-		/*font-size: 90%;*/
-		/*border: 1px solid blue;*/
-	}
+	/* body {
+		font-size: 90%;
+		border: 1px solid blue;
+	} */
 }
 @media only screen and (min-height: 1000px) {
 	body {
 		font-size: 100%;
 		/*border: 1px solid green;*/
 	}
+}
+
+
+
+/**
+ * ANIMATIONS
+ */
+.move-right-off {
+	animation: moveRightOff .2s ease-in;
+}
+@keyframes moveRightOff {
+	0% {transform: translateX(0%);}
+	100%{transform: translateX(100%);}
 }

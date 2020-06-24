@@ -30,14 +30,20 @@ export const helperFns = {
 			homeView.buildAddScreen()
 		}, 100)
 	},
-	revealNoteForm: (title, copy) => {
+	revealEditNoteForm: (title, copy) => {
+		const notebook = document.querySelector('.notebook');
+		notebook.classList.add('move-right-off');
 		setTimeout(() => {
-			helperFns.showNotePad()
+			notebook.parentNode.removeChild(notebook)
+			headerView.removeHeaderUtility()
 			setTimeout(() => {
-				newNoteView.newPageForm();
+				newNoteView.newPageForm()
+				headerView.showHeaderUtility('Save')
 				document.querySelector('.title-field').value = title;
 				document.querySelector('.note-field').textContent = copy;
-			}, 300);
-		}, 300);
+			}, 200)
+		}, 190)
+		utilityBarView.removeUtilityBar()
+		utilityBarView.showUtilityBar('Discard Changes', 'trash')
 	}
 }

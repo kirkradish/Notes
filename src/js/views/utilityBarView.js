@@ -3,7 +3,7 @@ import { app } from './base';
 export const showUtilityBar = (info, icon) => {
 	const markup = `
 		<div class="utility-bar">
-			<div class="note-count">${info === null ? '' : 'note count'}</div>
+			<div class="note-count">${info}</div>
 			<div class="note-utility ${icon === 'new' ? 'new' : 'trash'}">
 				<i class="fas ${icon === 'new' ? 'fa-plus-square' : 'fa-trash-alt'}"></i>
 			</div>

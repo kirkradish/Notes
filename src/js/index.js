@@ -38,15 +38,17 @@ app.addEventListener('click', (e) => {
 app.addEventListener('click', (e) => {
 	// Save
 	if (e.target.matches('.app-editor, .app-editor *')) {
-		const noteValues = newNoteView.getFieldValues();
-		if (noteValues.title !== '', noteValues.copy !== '') {
-			state.notebook.createNewNote(noteValues)
-			console.log(state.notebook.notes);
-		}
+		if (e.target.closest('.app-editor').classList.contains('save')) {
+			const noteValues = newNoteView.getFieldValues();
+			if (noteValues.title !== '', noteValues.copy !== '') {
+				state.notebook.createNewNote(noteValues)
+				console.log(state.notebook.notes);
+			}
 
-		directs.formToNotes(state.notebook.notes);
-		state.page = 'notebook';
-		// notebookController();
+			directs.formToNotes(state.notebook.notes);
+			state.page = 'notebook';
+			// notebookController();
+		}
 	}
 	// Trash
 	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
@@ -106,21 +108,20 @@ const notebookController = () => {
 /**
  * EDIT NOTE
  */
-// app.addEventListener('click', (e) => {
-// 	if (e.target.matches('.app-editor, .app-editor *')) {
-// 		const instructionBtn = document.querySelector('.app-editor');
-// 		if (instructionBtn.textContent === 'Edit') {
-// 			notebookView.onEditNote()
-// 			headerView.removeHeaderUtility()
-// 			headerView.showHeaderUtility('Done')
-// 		}
-// 		if (instructionBtn.textContent === 'Done') {
-// 			notebookView.onDoneEditingNote()
-// 			headerView.removeHeaderUtility()
-// 			headerView.showHeaderUtility('Edit')
-// 		}
-// 	}
-// })
+app.addEventListener('click', (e) => {
+	if (e.target.matches('.app-editor, .app-editor *')) {
+		if (e.target.closest('.app-editor').classList.contains('edit')) {
+			notebookView.onEditNote()
+			headerView.removeHeaderUtility()
+			headerView.showHeaderUtility('done', 'Done')
+		}
+		if (e.target.closest('.app-editor').classList.contains('done')) {
+			notebookView.onDoneEditingNote()
+			headerView.removeHeaderUtility()
+			headerView.showHeaderUtility('edit', 'Edit')
+		}
+	}
+})
 
 
 

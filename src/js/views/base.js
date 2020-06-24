@@ -47,7 +47,7 @@ export const directs = {
 	homeToForm: () => {
 		homeView.removeHomeScreen();
 		headerView.showAppTitle();
-		headerView.showHeaderUtility('Save')
+		headerView.showHeaderUtility('save', 'Save')
 		notebookView.showNotebookContainer('move-in-up');
 		newNoteView.newPageForm();
 		utilityBarView.showUtilityBar('trash');
@@ -61,7 +61,7 @@ export const directs = {
 	},
 	formToNotes: (notes) => {
 		headerView.removeHeaderUtility();
-		headerView.showHeaderUtility('Edit');
+		headerView.showHeaderUtility('edit', 'Edit');
 		utilityBarView.removeUtilityBar();
 		utilityBarView.showUtilityBar('new');
 		newNoteView.removeNewPageForm('move-right-out')

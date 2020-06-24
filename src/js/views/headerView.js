@@ -21,9 +21,9 @@ export const removeHeader = () => {
 	header.parentNode.removeChild(header)
 }
 
-export const showHeaderUtility = (instruction) => {
+export const showHeaderUtility = (className, instruction) => {
 	const header = document.querySelector('.app-header')
-	const instructionDiv = `<div class="app-editor"><p>${instruction}</p></div>`;
+	const instructionDiv = `<div class="app-editor ${className}"><p>${instruction}</p></div>`;
 
 	setTimeout(() => {
 		header.insertAdjacentHTML('beforeend', instructionDiv)
@@ -33,7 +33,9 @@ export const showHeaderUtility = (instruction) => {
 }
 
 export const removeHeaderUtility = () => {
-	const editToggle = document.querySelector('.app-editor')
-	editToggle.classList.add('move-down-out')
-	editToggle.parentNode.removeChild(editToggle)
+	setTimeout(() => {
+		const editToggle = document.querySelector('.app-editor')
+		editToggle.classList.add('move-down-out')
+		editToggle.parentNode.removeChild(editToggle)
+	}, 200);
 }

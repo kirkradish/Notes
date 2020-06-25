@@ -15,4 +15,12 @@ export default class Notebook {
 			}
 		)
 	}
+
+	deleteNoteFromState(noteId) {
+		state.notebook.notes.forEach((cur, i) => {
+			if (cur.id === noteId) {
+				state.notebook.notes.splice([i], 1);
+			}
+		})
+	}
 }

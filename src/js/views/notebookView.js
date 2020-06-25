@@ -44,6 +44,10 @@ export const addNoteToUI = (note) => {
 	document.querySelector('.notebook').insertAdjacentHTML('afterbegin', markup)
 }
 
+export const removeNoteFromUI =(note) => {
+	note.parentNode.removeChild(note)
+}
+
 export const onEditNote = () => {
 	const markup = `
 		<div class="delete-box">

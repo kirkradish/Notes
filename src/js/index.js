@@ -3,7 +3,6 @@ import * as homeView from './views/homeView';
 import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
 import * as notebookView from './views/notebookView';
-import * as utilityBarView from './views/utilityBarView.js';
 import { app, helperFns, directs } from './views/base';
 
 
@@ -68,7 +67,7 @@ app.addEventListener('click', (e) => {
  * NOTEBOOK
  */
 app.addEventListener('click', (e) => {
-	// Add New Note
+	// Add New Note UI
 	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
 		directs.notesToForm();
 		state.page = 'new-note';
@@ -113,24 +112,16 @@ const notebookController = () => {
  * TRASH NOTE
  */
 app.addEventListener('click', (e) => {
-	// Trash Existing Note
-	// if (e.target.matches('.delete-box, .delete-box *')) {
-	// 	const noteId = Number(e.target.closest('.note').id);
-	// 	const noteToDelete = e.target.closest('.note');
+	// Trash Note from Notebook
+	if (e.target.matches('.delete-box, .delete-box *')) {
+		const noteId = Number(e.target.closest('.note').id);
+		const noteToDelete = e.target.closest('.note');
 
-	// 	// Delete from State
-	// 	state.notebook.notes.forEach((cur, i) => {
-	// 		if (cur.id === noteId) {
-	// 			console.log(state.notebook.notes.title)
-	// 			state.notebook.notes.splice(state.notebook.notes[i], 1);
-	// 		}
-	// 	})
+		state.notebook.deleteNoteFromState(noteId);
+		notebookView.removeNoteFromUI(noteToDelete)
 
-	// 	// Delete from UI
-	// 	noteToDelete.parentNode.removeChild(noteToDelete)
-	// 	if (state.notebook.notes.length === 0) {
-	// 		console.log('2')
-	// 		directs.notesToHome();
-	// 	}
-	// }
+		if (state.notebook.notes.length === 0) {
+			directs.notesToHome();
+		}
+	}
 })

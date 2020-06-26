@@ -2,6 +2,7 @@ import Notebook from './models/NotebookModel';
 import * as homeView from './views/homeView';
 import * as headerView from './views/headerView';
 import * as newNoteView from './views/newNoteView';
+import * as noteView from './views/noteView';
 import * as notebookView from './views/notebookView';
 import { app, helperFns, directs } from './views/base';
 
@@ -39,14 +40,27 @@ app.addEventListener('click', (e) => {
 	// Save Note from Form
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		if (e.target.closest('.app-editor').classList.contains('save')) {
-			const noteValues = newNoteView.getFieldValues();
-			if (noteValues.title !== '', noteValues.copy !== '') {
-				state.notebook.createNewNote(noteValues)
-				directs.formToNotes(state.notebook.notes);
-				state.page = 'notebook';
+			if (state.editId) {
+				state.notebook.notes.forEach(cur => {
+					if (cur.id === state.editId) {
+						const editValues = newNoteView.getFieldValues(cur)
+						cur.title = editValues.title;
+						cur.copy = editValues.copy;
+						directs.formToNotes(state.notebook.notes);
+						notebookController();
+					}
+				})
 			} else {
-				// title must not be blank
-				// copy must not be blank
+				const noteValues = newNoteView.getFieldValues();
+				if (noteValues.title !== '', noteValues.copy !== '') {
+					// Add Note to State
+					state.notebook.createNewNote(noteValues)
+					directs.formToNotes(state.notebook.notes);
+					notebookController();
+				} else {
+					// title must not be blank
+					// copy must not be blank
+				}
 			}
 		}
 	}
@@ -57,6 +71,7 @@ app.addEventListener('click', (e) => {
 			state.page = 'home';
 		} else {
 			directs.formToNotes(state.notebook.notes);
+			notebookController();
 		}
 	}
 })
@@ -75,12 +90,12 @@ app.addEventListener('click', (e) => {
 	// Click Edit for Edit Mode
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		if (e.target.closest('.app-editor').classList.contains('edit')) {
-			notebookView.onEditNote()
+			noteView.onEditMode()
 			headerView.removeHeaderUtility()
 			headerView.showHeaderUtility('done', 'Done')
 		}
 		if (e.target.closest('.app-editor').classList.contains('done')) {
-			notebookView.onDoneEditingNote()
+			noteView.onDoneEditMode()
 			headerView.removeHeaderUtility()
 			headerView.showHeaderUtility('edit', 'Edit')
 		}
@@ -93,15 +108,15 @@ app.addEventListener('click', (e) => {
  * NOTEBOOK CONTROLLER
  */
 const notebookController = () => {
-
 	const notes = document.querySelectorAll('.note');
 	notes.forEach((cur, i) => {
 		cur.addEventListener('click', (e) => {
 			const noteTitle = notes[i].querySelector('.note-title').textContent;
 			const noteCopy = notes[i].querySelector('.note-copy').textContent;
-			
-			helperFns.revealEditNoteForm(noteTitle, noteCopy);
 
+			// Populate form with existing content
+			helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
+			state.editId = Number(cur.id);
 		})
 	})
 }

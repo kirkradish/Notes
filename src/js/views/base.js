@@ -16,7 +16,7 @@ export const helperFns = {
 			notebookContainer.parentNode.removeChild(notebookContainer)
 		}, 300)
 	},
-	revealEditNoteForm: (title, copy) => {
+	revealEditNoteForm: (id = '', title, copy) => {
 		const notebook = document.querySelector('.notebook');
 		notebook.classList.add('move-right-out');
 		setTimeout(() => {
@@ -24,13 +24,13 @@ export const helperFns = {
 			headerView.removeHeaderUtility()
 			setTimeout(() => {
 				newNoteView.newPageForm()
-				headerView.showHeaderUtility('Save')
+				headerView.showHeaderUtility('save', 'Save')
 				document.querySelector('.title-field').value = title;
 				document.querySelector('.note-field').textContent = copy;
 			}, 200)
 		}, 190)
 		utilityBarView.removeUtilityBar()
-		// utilityBarView.showUtilityBar('Discard Changes', 'trash')
+		utilityBarView.showUtilityBar('trash')
 	}
 }
 

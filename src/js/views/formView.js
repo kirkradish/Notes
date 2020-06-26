@@ -28,3 +28,8 @@ export const getFieldValues = () => {
 		copy: document.querySelector('.note-field').value
 	}
 }
+
+export const revealEditNoteForm = (note) => {
+	document.querySelector('.title-field').value = note.title;
+	document.querySelector('.note-field').textContent = note.copy;
+}

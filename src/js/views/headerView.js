@@ -21,15 +21,18 @@ export const removeHeader = () => {
 	header.parentNode.removeChild(header)
 }
 
-export const showHeaderUtility = (className, instruction) => {
-	const header = document.querySelector('.app-header')
-	const instructionDiv = `<div class="app-editor ${className}"><p>${instruction}</p></div>`;
+const ctaSave = `<div class="app-editor save"><p>Save</p></div>`;
+const ctaNew = `<div class="app-editor new"><p>New</p></div>`;
 
+export const showHeaderUtility = (page) => {
+	const header = document.querySelector('.app-header')
 	setTimeout(() => {
-		header.insertAdjacentHTML('beforeend', instructionDiv)
-		const instructionBtn = document.querySelector('.app-editor')
-		instructionBtn.classList.add()
-	}, 200)
+		if (page === 'new-note' || page === 'edit-note') {
+			header.insertAdjacentHTML('beforeend', ctaSave);
+		} else if (page === 'notebook') {
+			header.insertAdjacentHTML('beforeend', ctaNew);
+		}
+	}, 200);
 }
 
 export const removeHeaderUtility = () => {

@@ -1,10 +1,9 @@
 import Notebook from './models/NotebookModel';
 import * as homeView from './views/homeView';
 import * as headerView from './views/headerView';
-import * as newNoteView from './views/newNoteView';
+import * as formView from './views/formView';
 import * as noteView from './views/noteView';
-import * as notebookView from './views/notebookView';
-import { app, helperFns, directs } from './views/base';
+import { app, directs } from './views/base';
 
 
 const state = {}
@@ -27,8 +26,8 @@ window.addEventListener('load', (event) => {
  */
 app.addEventListener('click', (e) => {
 	if (e.target.matches('.add-circle, .add-circle *')) {
-		directs.homeToForm();
 		state.page = 'new-note';
+		directs.homeToForm(state.page);
 	}
 });
 
@@ -40,22 +39,23 @@ app.addEventListener('click', (e) => {
 	// Save Note from Form
 	if (e.target.matches('.app-editor, .app-editor *')) {
 		if (e.target.closest('.app-editor').classList.contains('save')) {
+			state.page = 'notebook';
 			if (state.editId) {
 				state.notebook.notes.forEach(cur => {
 					if (cur.id === state.editId) {
-						const editValues = newNoteView.getFieldValues(cur)
+						const editValues = formView.getFieldValues(cur)
 						cur.title = editValues.title;
 						cur.copy = editValues.copy;
-						directs.formToNotes(state.notebook.notes);
+						directs.formToNotes(state.page, state.notebook.notes);
 						notebookController();
 					}
 				})
 			} else {
-				const noteValues = newNoteView.getFieldValues();
+				const noteValues = formView.getFieldValues();
 				if (noteValues.title !== '', noteValues.copy !== '') {
 					// Add Note to State
 					state.notebook.createNewNote(noteValues)
-					directs.formToNotes(state.notebook.notes);
+					directs.formToNotes(state.page, state.notebook.notes);
 					notebookController();
 				} else {
 					// title must not be blank
@@ -70,7 +70,8 @@ app.addEventListener('click', (e) => {
 			directs.formToHome();
 			state.page = 'home';
 		} else {
-			directs.formToNotes(state.notebook.notes);
+			state.page = 'notebook';
+			directs.formToNotes(state.page, state.notebook.notes);
 			notebookController();
 		}
 	}
@@ -83,39 +84,45 @@ app.addEventListener('click', (e) => {
  */
 app.addEventListener('click', (e) => {
 	// Add New Note UI
-	if (e.target.matches('.note-utility.new, .note-utility.new *')) {
-		directs.notesToForm();
+	if (e.target.matches('.app-editor.new, .app-editor.new *')) {
 		state.page = 'new-note';
+		directs.notesToForm(state.page);
 	}
 	// Click Edit for Edit Mode
-	if (e.target.matches('.app-editor, .app-editor *')) {
-		if (e.target.closest('.app-editor').classList.contains('edit')) {
-			noteView.onEditMode()
-			headerView.removeHeaderUtility()
-			headerView.showHeaderUtility('done', 'Done')
-		}
-		if (e.target.closest('.app-editor').classList.contains('done')) {
-			noteView.onDoneEditMode()
-			headerView.removeHeaderUtility()
-			headerView.showHeaderUtility('edit', 'Edit')
-		}
-	}
+	// if (e.target.matches('.app-editor, .app-editor *')) {
+	// 	if (e.target.closest('.app-editor').classList.contains('edit')) {
+	// 		noteView.onEditMode()
+	// 		headerView.removeHeaderUtility()
+	// 		headerView.showHeaderUtility('done', 'Done')
+	// 	}
+	// 	if (e.target.closest('.app-editor').classList.contains('done')) {
+	// 		noteView.onDoneEditMode()
+	// 		headerView.removeHeaderUtility()
+	// 		headerView.showHeaderUtility('edit', 'Edit')
+	// 	}
+	// }
 })
 
 
 
 /**
  * NOTEBOOK CONTROLLER
+ * To edit
  */
 const notebookController = () => {
 	const notes = document.querySelectorAll('.note');
 	notes.forEach((cur, i) => {
 		cur.addEventListener('click', (e) => {
-			const noteTitle = notes[i].querySelector('.note-title').textContent;
-			const noteCopy = notes[i].querySelector('.note-copy').textContent;
+			state.page = 'edit-note';
+			const noteToEdit = {
+				id: cur.id,
+				title: notes[i].querySelector('.note-title').textContent,
+				copy: notes[i].querySelector('.note-copy').textContent
+			}
 
 			// Populate form with existing content
-			helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
+			directs.notesToForm(state.page, noteToEdit);
+			// helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
 			state.editId = Number(cur.id);
 		})
 	})
@@ -125,18 +132,18 @@ const notebookController = () => {
 
 /**
  * TRASH NOTE
+ * Trash Note from Notebook
  */
-app.addEventListener('click', (e) => {
-	// Trash Note from Notebook
-	if (e.target.matches('.delete-box, .delete-box *')) {
-		const noteId = Number(e.target.closest('.note').id);
-		const noteToDelete = e.target.closest('.note');
+// app.addEventListener('click', (e) => {
+// 	if (e.target.matches('.delete-box, .delete-box *')) {
+// 		const noteId = Number(e.target.closest('.note').id);
+// 		const noteToDelete = e.target.closest('.note');
 
-		state.notebook.deleteNoteFromState(noteId);
-		notebookView.removeNoteFromUI(noteToDelete)
+// 		state.notebook.deleteNoteFromState(noteId);
+// 		notebookView.removeNoteFromUI(noteToDelete)
 
-		if (state.notebook.notes.length === 0) {
-			directs.notesToHome();
-		}
-	}
-})
+// 		if (state.notebook.notes.length === 0) {
+// 			directs.notesToHome();
+// 		}
+// 	}
+// })

@@ -42,14 +42,6 @@ body {
 	font-size: 1.625em; /*26px*/
 	color: #1c6747;
 }
-/* .app-editor {
-	cursor: pointer;
-	animation: editUp .3s ease-out;
-}
-@keyframes editUp {
-	0% {transform: translateY(15px);}
-	100% {transform: translateY(0px);}
-} */
 
 
 
@@ -71,9 +63,16 @@ body {
 	justify-content:space-between;
 	padding: 0 1rem;
 }
-.note-count {
+.info {
 	font-size: 0.875rem; /*14px*/
 	color: #aac099;
+}
+.note-count {
+	color: #aac099;
+}
+.discard {
+	color: #b48727;
+	cursor: pointer
 }
 .note-utility {
 	font-size: 1.25rem; /*20px*/

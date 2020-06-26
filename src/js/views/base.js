@@ -1,76 +1,49 @@
 import * as headerView from './headerView';
 import * as utilityBarView from './utilityBarView';
 import * as homeView from './homeView';
-import * as newNoteView from './newNoteView';
+import * as formView from './formView';
 import * as notebookView from './notebookView';
 
 export const app = document.querySelector('#app');
 
-
-export const helperFns = {
-	removeNotePad: () => {
-		const notebookContainer = document.querySelector('.notebook-container')
-		notebookContainer.classList.remove('move-in-up')
-		notebookContainer.classList.add('move-out-down')
-		setTimeout(() => {
-			notebookContainer.parentNode.removeChild(notebookContainer)
-		}, 300)
-	},
-	revealEditNoteForm: (id = '', title, copy) => {
-		const notebook = document.querySelector('.notebook');
-		notebook.classList.add('move-right-out');
-		setTimeout(() => {
-			notebook.parentNode.removeChild(notebook)
-			headerView.removeHeaderUtility()
-			setTimeout(() => {
-				newNoteView.newPageForm()
-				headerView.showHeaderUtility('save', 'Save')
-				document.querySelector('.title-field').value = title;
-				document.querySelector('.note-field').textContent = copy;
-			}, 200)
-		}, 190)
-		utilityBarView.removeUtilityBar()
-		utilityBarView.showUtilityBar('trash')
-	}
-}
-
-
 export const directs = {
-	homeToForm: () => {
+	homeToForm: (page) => {
 		homeView.removeHomeScreen();
 		headerView.showAppTitle();
-		headerView.showHeaderUtility('save', 'Save')
+		headerView.showHeaderUtility(page)
 		notebookView.showNotebookContainer('move-in-up');
-		newNoteView.newPageForm();
-		utilityBarView.showUtilityBar('trash');
+		formView.newPageForm();
+		utilityBarView.showUtilityBar(page);
 	},
 	formToHome: () => {
 		headerView.removeHeader();
-		newNoteView.clearForm();
+		formView.clearForm();
 		notebookView.removeNotebookContainer('move-down-out');
 		utilityBarView.removeUtilityBar();
 		homeView.buildHomeScreen();
 	},
-	formToNotes: (notes) => {
+	formToNotes: (page, notes) => {
 		headerView.removeHeaderUtility();
-		headerView.showHeaderUtility('edit', 'Edit');
+		headerView.showHeaderUtility(page);
 		utilityBarView.removeUtilityBar();
-		utilityBarView.showUtilityBar('new');
-		newNoteView.removeNewPageForm('move-right-out')
+		utilityBarView.showUtilityBar(page, notes);
+		formView.removeNewPageForm('move-right-out')
 		notebookView.showNotebook(notes, 'move-right-in');
 	},
 	notesToHome: () => {
 		notebookView.removeNotebookContainer('move-down-out');
 		headerView.removeHeader();
-		utilityBarView.removeUtilityBar();
 		homeView.buildHomeScreen();
-	},
-	notesToForm: () => {
-		headerView.removeHeaderUtility();
-		headerView.showHeaderUtility('save', 'Save');
-		notebookView.removeNotebook();
-		newNoteView.newPageForm();
 		utilityBarView.removeUtilityBar();
-		utilityBarView.showUtilityBar('trash');
+	},
+	notesToForm: (page, note = null) => {
+		headerView.removeHeaderUtility();
+		headerView.showHeaderUtility(page);
+		notebookView.removeNotebook();
+		formView.newPageForm();
+		utilityBarView.removeUtilityBar();
+		console.log('1')
+		utilityBarView.showUtilityBar(page);
+		if (note) formView.revealEditNoteForm(note);
 	}
 }

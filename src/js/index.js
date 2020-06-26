@@ -50,6 +50,8 @@ app.addEventListener('click', (e) => {
 						notebookController();
 					}
 				})
+				// Clear id
+				state.editId = '';
 			} else {
 				const noteValues = formView.getFieldValues();
 				if (noteValues.title !== '', noteValues.copy !== '') {
@@ -66,14 +68,33 @@ app.addEventListener('click', (e) => {
 	}
 	// Trash Note from Form
 	if (e.target.matches('.note-utility.trash, .note-utility.trash *')) {
-		if (state.notebook.notes.length === 0) {
-			directs.formToHome();
-			state.page = 'home';
-		} else {
-			state.page = 'notebook';
-			directs.formToNotes(state.page, state.notebook.notes);
-			notebookController();
+		if (state.page === 'new-note') {
+			if (state.notebook.notes.length === 0) {
+				state.page = 'home';
+				directs.formToHome();
+			} else {
+				state.page = 'notebook';
+				directs.formToNotes(state.page, state.notebook.notes);
+				notebookController();
+			}
 		}
+		if (state.page === 'edit-note') {
+			const noteId = state.editId;
+			state.notebook.deleteNoteFromState(noteId);
+			state.page = 'notebook';
+			if (state.notebook.notes.length > 0) {
+				directs.formToNotes(state.page, state.notebook.notes);
+				notebookController();
+			} else {
+				directs.formToHome();
+			}
+		}
+	}
+	// Discard Edits
+	if (e.target.matches('.utility-bar .discard, .utility-bar .discard *')) {
+		state.page = 'notebook';
+		directs.formToNotes(state.page, state.notebook.notes)
+		notebookController();
 	}
 })
 
@@ -88,19 +109,6 @@ app.addEventListener('click', (e) => {
 		state.page = 'new-note';
 		directs.notesToForm(state.page);
 	}
-	// Click Edit for Edit Mode
-	// if (e.target.matches('.app-editor, .app-editor *')) {
-	// 	if (e.target.closest('.app-editor').classList.contains('edit')) {
-	// 		noteView.onEditMode()
-	// 		headerView.removeHeaderUtility()
-	// 		headerView.showHeaderUtility('done', 'Done')
-	// 	}
-	// 	if (e.target.closest('.app-editor').classList.contains('done')) {
-	// 		noteView.onDoneEditMode()
-	// 		headerView.removeHeaderUtility()
-	// 		headerView.showHeaderUtility('edit', 'Edit')
-	// 	}
-	// }
 })
 
 
@@ -125,6 +133,7 @@ const notebookController = () => {
 			// helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
 			state.editId = Number(cur.id);
 		})
+		
 	})
 }
 

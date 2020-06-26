@@ -43,6 +43,10 @@ body {
 	color: #1c6747;
 }
 
+.app-editor {
+	cursor: pointer;
+}
+
 
 
 
@@ -65,7 +69,6 @@ body {
 }
 .info {
 	font-size: 0.875rem; /*14px*/
-	color: #aac099;
 }
 .note-count {
 	color: #aac099;
@@ -78,10 +81,8 @@ body {
 	font-size: 1.25rem; /*20px*/
 }
 .note-utility.trash {
+	cursor: pointer;
 	color: #b48727;
-}
-.note-utility.new {
-	color: #aac099;
 }
 
 

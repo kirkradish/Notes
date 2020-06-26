@@ -42,7 +42,6 @@ export const directs = {
 		notebookView.removeNotebook();
 		formView.newPageForm();
 		utilityBarView.removeUtilityBar();
-		console.log('1')
 		utilityBarView.showUtilityBar(page);
 		if (note) formView.revealEditNoteForm(note);
 	}

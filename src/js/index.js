@@ -37,32 +37,30 @@ app.addEventListener('click', (e) => {
  */
 app.addEventListener('click', (e) => {
 	// Save Note from Form
-	if (e.target.matches('.app-editor, .app-editor *')) {
-		if (e.target.closest('.app-editor').classList.contains('save')) {
-			state.page = 'notebook';
-			if (state.editId) {
-				state.notebook.notes.forEach(cur => {
-					if (cur.id === state.editId) {
-						const editValues = formView.getFieldValues(cur)
-						cur.title = editValues.title;
-						cur.copy = editValues.copy;
-						directs.formToNotes(state.page, state.notebook.notes);
-						notebookController();
-					}
-				})
-				// Clear id
-				state.editId = '';
-			} else {
-				const noteValues = formView.getFieldValues();
-				if (noteValues.title !== '', noteValues.copy !== '') {
-					// Add Note to State
-					state.notebook.createNewNote(noteValues)
+	if (e.target.matches('.app-editor.save, .app-editor.save *')) {
+		state.page = 'notebook';
+		if (state.editId) {
+			state.notebook.notes.forEach(cur => {
+				if (cur.id === state.editId) {
+					const editValues = formView.getFieldValues(cur)
+					cur.title = editValues.title;
+					cur.copy = editValues.copy;
 					directs.formToNotes(state.page, state.notebook.notes);
 					notebookController();
-				} else {
-					// title must not be blank
-					// copy must not be blank
 				}
+			})
+			// Clear id
+			state.editId = '';
+		} else {
+			const noteValues = formView.getFieldValues();
+			if (noteValues.title !== '', noteValues.copy !== '') {
+				// Add Note to State
+				state.notebook.createNewNote(noteValues)
+				directs.formToNotes(state.page, state.notebook.notes);
+				notebookController();
+			} else {
+				// title must not be blank
+				// copy must not be blank
 			}
 		}
 	}

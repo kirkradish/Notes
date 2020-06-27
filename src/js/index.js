@@ -53,14 +53,18 @@ app.addEventListener('click', (e) => {
 			state.editId = '';
 		} else {
 			const noteValues = formView.getFieldValues();
-			if (noteValues.title !== '', noteValues.copy !== '') {
+			const noteTitle = document.querySelector('.title-field');
+			const noteCopy = document.querySelector('.note-field');
+			if (noteValues.title !== '' && noteValues.copy !== '') {
+				if (noteTitle.classList.contains('red')) noteTitle.classList.remove('red');
+				if (noteCopy.classList.contains('red')) noteCopy.classList.remove('red');
 				// Add Note to State
 				state.notebook.createNewNote(noteValues)
 				directs.formToNotes(state.page, state.notebook.notes);
 				notebookController();
 			} else {
-				// title must not be blank
-				// copy must not be blank
+				if (noteValues.title === '') noteTitle.classList.add('red')
+				if (noteValues.copy === '') noteCopy.classList.add('red')
 			}
 		}
 	}

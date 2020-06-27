@@ -182,6 +182,7 @@ body {
 	font-family: 'Inter', sans-serif;
 	color: #b7b7b7;
 }
+.title-field.red::placeholder, .note-field.red::placeholder {color: #bf4b4b}
 .title-field, .title-field::placeholder {
 	font-size: 1.25rem; /*20px*/
 	font-weight: 600;

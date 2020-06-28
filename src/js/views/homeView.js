@@ -4,7 +4,9 @@ export const buildHomeScreen = () => {
 	const markup = `
 		<div class="add-container">
 			<p>Something on your mind?</p>
-			<div class="add-circle"><i class="fas fa-plus"></i></div>
+			<button type="button" class="add-container__button">
+				<i class="fas fa-plus"></i>
+			</button>
 			<p>Write it down!</p>
 		</div>
 	`;

@@ -1,8 +1,6 @@
 import Notebook from './models/NotebookModel';
 import * as homeView from './views/homeView';
-import * as headerView from './views/headerView';
 import * as formView from './views/formView';
-import * as noteView from './views/noteView';
 import { app, directs } from './views/base';
 
 
@@ -25,7 +23,7 @@ window.addEventListener('load', (event) => {
  * HOME: NEW NOTE
  */
 app.addEventListener('click', (e) => {
-	if (e.target.matches('.add-circle, .add-circle *')) {
+	if (e.target.matches('.add-container__button, .add-container__button *')) {
 		state.page = 'new-note';
 		directs.homeToForm(state.page);
 	}
@@ -37,7 +35,7 @@ app.addEventListener('click', (e) => {
  */
 app.addEventListener('click', (e) => {
 	// Save Note from Form
-	if (e.target.matches('.app-editor.save, .app-editor.save *')) {
+	if (e.target.matches('.app-header__editor.save, .app-header__editor.save *')) {
 		state.page = 'notebook';
 		if (state.editId) {
 			state.notebook.notes.forEach(cur => {
@@ -53,8 +51,8 @@ app.addEventListener('click', (e) => {
 			state.editId = '';
 		} else {
 			const noteValues = formView.getFieldValues();
-			const noteTitle = document.querySelector('.title-field');
-			const noteCopy = document.querySelector('.note-field');
+			const noteTitle = document.querySelector('.form-box__title');
+			const noteCopy = document.querySelector('.form-box__copy');
 			if (noteValues.title !== '' && noteValues.copy !== '') {
 				if (noteTitle.classList.contains('red')) noteTitle.classList.remove('red');
 				if (noteCopy.classList.contains('red')) noteCopy.classList.remove('red');
@@ -107,7 +105,7 @@ app.addEventListener('click', (e) => {
  */
 app.addEventListener('click', (e) => {
 	// Add New Note UI
-	if (e.target.matches('.app-editor.new, .app-editor.new *')) {
+	if (e.target.matches('.app-header__editor.new, .app-header__editor.new *')) {
 		state.page = 'new-note';
 		directs.notesToForm(state.page);
 	}
@@ -126,8 +124,8 @@ const notebookController = () => {
 			state.page = 'edit-note';
 			const noteToEdit = {
 				id: cur.id,
-				title: notes[i].querySelector('.note-title').textContent,
-				copy: notes[i].querySelector('.note-copy').textContent
+				title: notes[i].querySelector('.note__title').textContent,
+				copy: notes[i].querySelector('.note__copy').textContent
 			}
 
 			// Populate form with existing content

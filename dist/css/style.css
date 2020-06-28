@@ -31,19 +31,18 @@ body {
 	align-items: baseline;
 	justify-content:space-between;
 }
-.app-header .app-title {
+.app-header__title {
 	font-size: 3.125em; /*50px*/
 	font-weight: 600;
 	color: #1c6747;
-	animation: editUp .3s ease-out;
 }
 
-.app-header .app-editor {
+.app-header__editor {
 	font-size: 1.625em; /*26px*/
 	color: #1c6747;
 }
 
-.app-editor {
+.app-header__editor {
 	cursor: pointer;
 }
 
@@ -104,7 +103,10 @@ body {
 	color: #1c6747;
 	width: 90%;
 }
-.add-circle {
+button {
+	border: none;
+}
+.add-container__button {
 	position: relative;
 	width: 100px;
 	height: 100px;
@@ -113,14 +115,14 @@ body {
 	box-shadow: 0 0 10px 5px rgba(8,40,29,0.2);
 	margin: 30px 0;
 }
-.add-circle:hover {
+.add-container__button:hover {
 	box-shadow: 0 0 10px 8px rgba(8,40,29,0.2);
 }
-.add-circle:active {
+.add-container__button:active {
 	box-shadow: 0 0 10px 5px rgba(8,40,29,0.2);
 }
 
-.add-circle .fa-plus {
+.add-container__button .fa-plus {
 	content: '+';
 	position: absolute;
 	top: 50%;
@@ -166,7 +168,7 @@ body {
  * NEW NOTE FORM
  */
 .form-box {height: 100%;}
-.title-field, .note-field {
+.form-box__title, .form-box__copy {
 	height: 10%;
 	width: 100%;
 	color: #ededed;
@@ -177,23 +179,23 @@ body {
 	border-bottom: none;
 	border-right: none;
 }
-.title-field, .note-field,
-.title-field::placeholder, .note-field::placeholder {
+.form-box__title, .form-box__copy,
+.form-box__title::placeholder, .form-box__copy::placeholder {
 	font-family: 'Inter', sans-serif;
 	color: #b7b7b7;
 }
-.title-field.red::placeholder, .note-field.red::placeholder {color: #bf4b4b}
-.title-field, .title-field::placeholder {
+.form-box__title.red::placeholder, .form-box__copy.red::placeholder {color: #bf4b4b}
+.form-box__title, .form-box__title::placeholder {
 	font-size: 1.25rem; /*20px*/
 	font-weight: 600;
 }
-.note-field, .note-field::placeholder {
+.form-box__copy, .form-box__copy::placeholder {
 	font-size: 0.875rem; /*14px*/
 }
-.title-field {
+.form-box__title {
 	margin-bottom: 1rem;
 }
-.note-field {
+.form-box__copy {
 	height: 87%;
 }
 .new-note-right {
@@ -222,26 +224,26 @@ body {
 	border-bottom: 1px solid #595959;
 	transform: translateX(0);
 }
-.note-preview {
+.note__preview {
 	width: 100%;
 	transition: width .2s linear;
 }
-.note-header {
+.note__header {
 	display: flex;
 	align-items: baseline;
 	justify-content:space-between;
 	margin-bottom: 0.625em; /*10px*/
 }
-.note-title {
+.note__title {
 	font-size: 1.625em; /*26px*/
 	font-weight: 600;
 	color: #f2fcff;
 }
-.note-date {
+.note__date {
 	font-size: 1.375em; /*22px*/
 	color: #b7b7b7;
 }
-.note-copy {
+.note__copy {
 	font-size: 1.375em; /*22px*/
 	line-height: 1.25;
 	color: #b7b7b7;

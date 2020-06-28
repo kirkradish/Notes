@@ -17,12 +17,12 @@ export const removeNotebookContainer = (moverClass) => {
 export const addNoteToUI = (note) => {
 	const markup = `
 		<div class="note" id="${note.id}">
-			<div class="note-preview">
-				<header class="note-header">
-					<h2 class="note-title">${note.title}</h2>
-					<p class="note-date">${note.date}</p>
+			<div class="note__preview">
+				<header class="note__header">
+					<h2 class="note__title">${note.title}</h2>
+					<p class="note__date">${note.date}</p>
 				</header>
-				<p class="note-copy">${note.copy}</p>
+				<p class="note__copy">${note.copy}</p>
 			</div>
 		</div>
 	`;

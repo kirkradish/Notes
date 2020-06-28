@@ -1,8 +1,8 @@
 export const newPageForm = () => {
 	const markup = `
 		<div class="form-box">
-			<input type="text" class="title-field" placeholder="Title">
-			<textarea class="note-field" placeholder="What's up?"></textarea>
+			<input type="text" class="form-box__title" placeholder="Title">
+			<textarea class="form-box__copy" placeholder="What's up?"></textarea>
 		</div>
 	`;
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
@@ -18,18 +18,18 @@ export const removeNewPageForm = (moverClass) => {
 }
 
 export const clearForm = () => {
-	document.querySelector('.title-field').value = '';
-	document.querySelector('.note-field').value = '';
+	document.querySelector('.form-box__title').value = '';
+	document.querySelector('.form-box__copy').value = '';
 }
 
 export const getFieldValues = () => {
 	return {
-		title: document.querySelector('.title-field').value,
-		copy: document.querySelector('.note-field').value
+		title: document.querySelector('.form-box__title').value,
+		copy: document.querySelector('.form-box__copy').value
 	}
 }
 
-export const revealEditNoteForm = (note) => {
-	document.querySelector('.title-field').value = note.title;
-	document.querySelector('.note-field').textContent = note.copy;
+export const populateEditForm = (note) => {
+	document.querySelector('.form-box__title').value = note.title;
+	document.querySelector('.form-box__copy').textContent = note.copy;
 }

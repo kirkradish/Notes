@@ -4,12 +4,13 @@ const createHeader = () => {
 	const markup = `<header class="app-header"></header>`;
 	app.insertAdjacentHTML('afterbegin', markup);
 	setTimeout(() => {
+		document.querySelector('.app-header').classList.add('move-in-up')
 		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
 	}, 200)
 }
 
 export const showAppTitle = () => {
-	const markup = `<h1 class="app-title">Notes</h1>`;
+	const markup = `<h1 class="app-header__title">Notes</h1>`;
 	createHeader();
 	setTimeout(() => {
 		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
@@ -21,8 +22,8 @@ export const removeHeader = () => {
 	header.parentNode.removeChild(header)
 }
 
-const ctaSave = `<div class="app-editor save"><p>Save</p></div>`;
-const ctaNew = `<div class="app-editor new"><p>New</p></div>`;
+const ctaSave = `<div class="app-header__editor save"><p>Save</p></div>`;
+const ctaNew = `<div class="app-header__editor new"><p>New</p></div>`;
 
 export const showHeaderUtility = (page) => {
 	const header = document.querySelector('.app-header')
@@ -37,8 +38,7 @@ export const showHeaderUtility = (page) => {
 
 export const removeHeaderUtility = () => {
 	setTimeout(() => {
-		const editToggle = document.querySelector('.app-editor')
-		editToggle.classList.add('move-down-out')
+		const editToggle = document.querySelector('.app-header__editor')
 		editToggle.parentNode.removeChild(editToggle)
 	}, 200);
 }

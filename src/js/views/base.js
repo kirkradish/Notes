@@ -43,6 +43,6 @@ export const directs = {
 		formView.newPageForm();
 		utilityBarView.removeUtilityBar();
 		utilityBarView.showUtilityBar(page);
-		if (note) formView.revealEditNoteForm(note);
+		if (note) formView.populateEditForm(note);
 	}
 }

@@ -148,6 +148,15 @@ button {
 	border-radius: 50px 50px 0 0;
 	background-image: linear-gradient(to top, rgba(30, 30, 30, 1), rgba(40, 40, 40, 0.9));
 }
+.notebook {
+	height: 95%;
+	scrollbar-width: none; /*Firefox*/
+	overflow: scroll;
+}
+.notebook::-webkit-scrollbar {/*Safari, Chrome*/
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
 .move-in-up {
 	animation: moveInUp .4s ease;
 }

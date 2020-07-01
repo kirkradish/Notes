@@ -124,9 +124,10 @@ const notebookController = () => {
 			state.page = 'edit-note';
 			const noteToEdit = {
 				id: cur.id,
-				title: notes[i].querySelector('.note__title').textContent,
-				copy: notes[i].querySelector('.note__copy').textContent
+				title: state.notebook.notes[i].title,
+				copy: state.notebook.notes[i].copy
 			}
+			console.log('dope')
 
 			// Populate form with existing content
 			directs.notesToForm(state.page, noteToEdit);

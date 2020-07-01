@@ -22,7 +22,7 @@ export const addNoteToUI = (note) => {
 					<h2 class="note__title">${note.title}</h2>
 					<p class="note__date">${note.date}</p>
 				</header>
-				<p class="note__copy">${note.copy}</p>
+				<p class="note__copy">${shortenNotePreview(note.copy)}</p>
 			</div>
 		</div>
 	`;
@@ -46,4 +46,8 @@ export const removeNotebook = () => {
 	const notebook = document.querySelector('.notebook')
 	notebook.classList.add('move-out-down')
 	notebook.parentNode.removeChild(notebook)
+}
+
+const shortenNotePreview = (noteCopy) => {
+	return (noteCopy.length > 100) ? `${noteCopy.slice(0, 100)}...` : noteCopy;
 }

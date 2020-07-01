@@ -123,21 +123,12 @@ const notebookController = () => {
 		cur.addEventListener('click', () => {
 			state.page = 'edit-note';
 			const curId = Number(cur.id);
-			
-			state.notebook.notes.forEach(stateNote => {
-				if (stateNote.id === curId) {
-					const noteToEdit = {
-						id: cur.id,
-						title: stateNote.title,
-						copy: stateNote.copy
-					}
 
-					// Populate form with existing content
-					directs.notesToForm(state.page, noteToEdit);
-					// helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
-					state.editId = Number(cur.id);
-				}
-			})
+			const noteToEdit = state.notebook.notes.find(note => note.id === curId);
+			// Populate form with existing content
+			directs.notesToForm(state.page, noteToEdit);
+			// Let form know you're editing
+			state.editId = curId;
 		})
 		
 	})

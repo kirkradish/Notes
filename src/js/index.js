@@ -118,21 +118,26 @@ app.addEventListener('click', (e) => {
  * To edit
  */
 const notebookController = () => {
-	const notes = document.querySelectorAll('.note');
-	notes.forEach((cur, i) => {
-		cur.addEventListener('click', (e) => {
+	const domNotes = document.querySelectorAll('.note');
+	domNotes.forEach((cur) => {
+		cur.addEventListener('click', () => {
 			state.page = 'edit-note';
-			const noteToEdit = {
-				id: cur.id,
-				title: state.notebook.notes[i].title,
-				copy: state.notebook.notes[i].copy
-			}
-			console.log('dope')
+			const curId = Number(cur.id);
+			
+			state.notebook.notes.forEach(stateNote => {
+				if (stateNote.id === curId) {
+					const noteToEdit = {
+						id: cur.id,
+						title: stateNote.title,
+						copy: stateNote.copy
+					}
 
-			// Populate form with existing content
-			directs.notesToForm(state.page, noteToEdit);
-			// helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
-			state.editId = Number(cur.id);
+					// Populate form with existing content
+					directs.notesToForm(state.page, noteToEdit);
+					// helperFns.revealEditNoteForm(cur.id, noteTitle, noteCopy);
+					state.editId = Number(cur.id);
+				}
+			})
 		})
 		
 	})

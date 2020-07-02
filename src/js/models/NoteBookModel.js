@@ -1,8 +1,9 @@
 import moment from 'moment';
 
-export default class Notebook {
+export default class NotebookModel {
 	constructor() {
-		this.notes = [];
+		// this.notes = [];
+		this.notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : []
 	}
 
 	createNewNote(newNote) {
@@ -14,12 +15,17 @@ export default class Notebook {
 				copy: newNote.copy
 			}
 		)
+		this.addNotesToLocalStorage(this.notes);
+	}
+
+	addNotesToLocalStorage(notes) {
+		localStorage.setItem('notes', JSON.stringify(notes))
 	}
 
 	deleteNoteFromState(noteId) {
-		state.notebook.notes.forEach((cur, i) => {
+		state.notebookModel.notes.forEach((cur, i) => {
 			if (cur.id === noteId) {
-				state.notebook.notes.splice([i], 1);
+				state.notebookModel.notes.splice([i], 1);
 			}
 		})
 	}

@@ -7,6 +7,12 @@ import * as notebookView from './notebookView';
 export const app = document.querySelector('#app');
 
 export const directs = {
+	straightToNotes: (page, notes) => {
+		headerView.showAppTitle();
+		headerView.showHeaderUtility(page);
+		notebookView.showNotebook(notes, 'maximize-in');
+		utilityBarView.showUtilityBar(page, notes);
+	},
 	homeToForm: (page) => {
 		homeView.removeHomeScreen();
 		headerView.showAppTitle();

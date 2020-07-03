@@ -6,7 +6,10 @@ export const newPageForm = () => {
 		</div>
 	`;
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
-	document.querySelector('.form-box__title').focus()
+	// Allow the for to appear before selecting it's child
+	setTimeout(() => {
+		document.querySelector('.form-box__title').focus()
+	}, 200)
 
 	document.querySelector('.form-box').childNodes.forEach(cur => {
 		cur.addEventListener('keyup', function(e) {

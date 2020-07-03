@@ -195,13 +195,15 @@ button {
 .form-box__title::placeholder {
 	font-size: 1.8rem;
 	font-weight: 600;
-	color: #b7b7b7;
 }
 .form-box__copy, 
 .form-box__copy::placeholder {
 	font-family: 'Inter', sans-serif; /* Change default */
 	font-size: 1.6rem;
-	color: #b7b7b7;
+}
+.form-box__title::placeholder, 
+.form-box__copy::placeholder {
+	color: #666666;
 }
 .form-box__title.red::placeholder, 
 .form-box__copy.red::placeholder {

@@ -5,13 +5,12 @@ const createHeader = () => {
 	app.insertAdjacentHTML('afterbegin', markup);
 	setTimeout(() => {
 		document.querySelector('.app-header').classList.add('move-in-up')
-		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
 	}, 200)
 }
 
 export const showAppTitle = () => {
+	createHeader()
 	const markup = `<h1 class="app-header__title">Notes</h1>`;
-	createHeader();
 	setTimeout(() => {
 		document.querySelector('.app-header').insertAdjacentHTML('afterbegin', markup)
 	}, 200)

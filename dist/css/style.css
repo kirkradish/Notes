@@ -1,5 +1,6 @@
 * {padding: 0; margin: 0; box-sizing: border-box;}
 html, body {width: 100%; height: 100%;}
+html {font-size: 62.5%; /*10px*/}
 body {
 	display: flex;
 	align-items: center;
@@ -14,7 +15,6 @@ body {
 	position: relative;
 	width: 55vh;
 	height: 90vh;
-	padding: 2rem;
 	background-image: linear-gradient(to top, rgba(183, 183, 183, 0.9), rgba(228, 232, 233, 0.8)), url('../img/plant-green-minimal-leaf.jpg');
 	background-size: cover;
 	background-position: center;
@@ -30,15 +30,16 @@ body {
 	display: flex;
 	align-items: baseline;
 	justify-content:space-between;
+	padding: 3rem;
 }
 .app-header__title {
-	font-size: 3.125em; /*50px*/
+	font-size: 3.5rem;
 	font-weight: 600;
 	color: #1c6747;
 }
 
 .app-header__editor {
-	font-size: 1.625em; /*26px*/
+	font-size: 2rem;
 	color: #1c6747;
 }
 
@@ -58,16 +59,16 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 3.75rem; /*60px*/
+	height: 6rem; /*60px*/
 	transform: translateY(0);
 	background-color: #1e1e1e;
 	display: flex;
 	align-items: center;
 	justify-content:space-between;
-	padding: 0 1rem;
+	padding: 0 3rem;
 }
 .info {
-	font-size: 0.875rem; /*14px*/
+	font-size: 1.4rem;
 }
 .note-count {
 	color: #aac099;
@@ -77,7 +78,7 @@ body {
 	cursor: pointer
 }
 .note-utility {
-	font-size: 1.25rem; /*20px*/
+	font-size: 2rem; /*20px*/
 }
 .note-utility.trash {
 	cursor: pointer;
@@ -176,30 +177,35 @@ button {
 /**
  * NEW NOTE FORM
  */
-.form-box {height: 100%;}
+.form-box {
+	height: 100%;
+}
 .form-box__title, .form-box__copy {
 	height: 10%;
 	width: 100%;
 	color: #ededed;
-	padding: 1em;
+	padding: 1.8rem;
 	background-color: transparent;
 	border-top: none;
 	border-left: 1px solid #282828;
 	border-bottom: none;
 	border-right: none;
 }
-.form-box__title, .form-box__copy,
-.form-box__title::placeholder, .form-box__copy::placeholder {
-	font-family: 'Inter', sans-serif;
+.form-box__title,
+.form-box__title::placeholder {
+	font-size: 1.8rem;
+	font-weight: 600;
 	color: #b7b7b7;
 }
-.form-box__title.red::placeholder, .form-box__copy.red::placeholder {color: #bf4b4b}
-.form-box__title, .form-box__title::placeholder {
-	font-size: 1.25rem; /*20px*/
-	font-weight: 600;
+.form-box__copy, 
+.form-box__copy::placeholder {
+	font-family: 'Inter', sans-serif; /* Change default */
+	font-size: 1.6rem;
+	color: #b7b7b7;
 }
-.form-box__copy, .form-box__copy::placeholder {
-	font-size: 0.875rem; /*14px*/
+.form-box__title.red::placeholder, 
+.form-box__copy.red::placeholder {
+	color: #bf4b4b;
 }
 .form-box__title {
 	margin-bottom: 1rem;
@@ -241,19 +247,19 @@ button {
 	display: flex;
 	align-items: baseline;
 	justify-content:space-between;
-	margin-bottom: 0.625em; /*10px*/
+	margin-bottom: 1rem;
 }
 .note__title {
-	font-size: 1.625em; /*26px*/
+	font-size: 1.8rem;
 	font-weight: 600;
 	color: #f2fcff;
 }
 .note__date {
-	font-size: 1.375em; /*22px*/
+	font-size: 1.6rem;
 	color: #b7b7b7;
 }
 .note__copy {
-	font-size: 1.375em; /*22px*/
+	font-size: 1.6rem;
 	line-height: 1.25;
 	color: #b7b7b7;
 }
@@ -266,7 +272,7 @@ button {
 	align-items: center;
 	justify-content: center;
 	width: 20%;
-	font-size: 1.25rem;
+	font-size: 2.2rem;
 	color: #b48727;
 }
 

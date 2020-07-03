@@ -6,6 +6,16 @@ export const newPageForm = () => {
 		</div>
 	`;
 	document.querySelector('.notebook-container').insertAdjacentHTML('beforeend', markup)
+	document.querySelector('.form-box__title').focus()
+
+	document.querySelector('.form-box').childNodes.forEach(cur => {
+		cur.addEventListener('keyup', function(e) {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				document.querySelector('.app-header__editor.save').click();
+			}
+		})
+	})
 }
 
 export const removeNewPageForm = (moverClass) => {

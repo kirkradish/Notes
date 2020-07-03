@@ -90,7 +90,6 @@ app.addEventListener('click', (e) => {
 			} else {
 				state.page = 'notebook';
 				directs.formToNotes(state.page, state.notebookModel.notes);
-				// state.notebookModel.addNotesToLocalStorage(state.notebookModel.notes);
 				notebookController();
 			}
 		}
@@ -100,7 +99,6 @@ app.addEventListener('click', (e) => {
 			state.page = 'notebook';
 			if (state.notebookModel.notes.length > 0) {
 				directs.formToNotes(state.page, state.notebookModel.notes);
-				// state.notebookModel.addNotesToLocalStorage(state.notebookModel.notes);
 				notebookController();
 			} else {
 				directs.formToHome();
@@ -111,6 +109,8 @@ app.addEventListener('click', (e) => {
 	// Discard Edits
 	if (e.target.matches('.utility-bar .discard, .utility-bar .discard *')) {
 		state.page = 'notebook';
+		state.editId = '';
+		
 		directs.formToNotes(state.page, state.notebookModel.notes)
 		notebookController();
 	}
@@ -148,6 +148,5 @@ const notebookController = () => {
 			// Let form know you're editing
 			state.editId = curId;
 		})
-		
 	})
 }

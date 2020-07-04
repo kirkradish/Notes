@@ -279,26 +279,25 @@ button {
 }
 
 
-
-
-
-@media only screen and (min-height: 800px) {
-	/* body {
-		font-size: 80%;
+@media only screen and (min-height: 400px) {
+	html {
+		font-size: 40%;
 		border: 1px solid red;
-	} */
+	}
 }
 
-@media only screen and (min-height: 900px) {
-	/* body {
-		font-size: 90%;
-		border: 1px solid blue;
-	} */
+@media only screen and (min-height: 500px) {
+	html {
+		font-size: 50%;
+		border: 1px solid red;
+	}
 }
-@media only screen and (min-height: 1000px) {
-	/* body {
-		font-size: 100%;
-	} */
+
+@media only screen and (min-height: 700px) {
+	html {
+		font-size: 62.5%; /*10px*/
+		border: 1px solid red;
+	}
 }
 
 
